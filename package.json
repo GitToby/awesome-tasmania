@@ -1,0 +1,31 @@
+{
+  "name": "template-next-tina-tailwind",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/font": "^14.0.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tinacms/cli": "^1.5.39",
+    "daisyui": "^4.4.19",
+    "next": "14.0.4",
+    "next-seo": "^6.4.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "tinacms": "^1.5.28"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
