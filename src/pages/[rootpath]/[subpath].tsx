@@ -59,8 +59,6 @@ export const getStaticProps = async ({
 
 export const getStaticPaths = async () => {
   const rootPages = await client.queries.rootPagesConnection();
-  console.log(rootPages);
-
   // subpaths are defined off linked documents in root pages
   const contentPathParams = rootPages.data.rootPagesConnection.edges
     .filter((page) => page.node && page.node.publish)
@@ -82,8 +80,6 @@ export const getStaticPaths = async () => {
       }));
     })
     .flat();
-
-  console.log("!!!", contentPathParams);
   return {
     paths: contentPathParams,
     fallback: false,
