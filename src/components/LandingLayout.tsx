@@ -13,7 +13,7 @@ import {
 import { link } from "fs";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { ChildrenMixin } from "@/types";
+import { ChildrenMixin, ImageDataWrap } from "@/types";
 
 type LandinglayoutProps = {
   navData: {
@@ -31,11 +31,7 @@ type LandinglayoutProps = {
     description: string;
     links: Links[];
   };
-  image: {
-    url: string;
-    alt?: string;
-    tooltip?: string;
-  };
+  image: ImageDataWrap;
 } & ChildrenMixin;
 
 export function LandingLayout(props: LandinglayoutProps) {
@@ -69,7 +65,7 @@ export function LandingLayout(props: LandinglayoutProps) {
               </div>
             )}
           </div>
-          <FooterBar socials={props.socialsData} />
+          <FooterBar socials={props.socialsData} image={props.image} />
         </div>
       </div>
     </main>

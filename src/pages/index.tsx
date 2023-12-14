@@ -42,10 +42,7 @@ export default function Page(props: HomePageProps) {
           pageData.featuredLink4,
         ] as Links[],
       }}
-      image={{
-        url: pageData.image.url,
-        alt: pageData.image.alt,
-      }}
+      image={pageData.image}
     >
       <h1 className="mb-5 text-5xl font-bold uppercase">{pageData.title}</h1>
       <div className="mb-5">

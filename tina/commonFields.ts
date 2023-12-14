@@ -52,11 +52,26 @@ const imageAlt: TinaField = {
   required: true,
 };
 
-const imageTooltip: TinaField = {
+const imageTooltipText: TinaField = {
   type: "string",
-  name: "tooltip",
+  name: "text",
   label: "Image Tooltip Text",
   description: "Helper tooltip in various locations the image is used.",
+};
+
+const imageTooltipLink: TinaField = {
+  type: "string",
+  name: "link",
+  label: "Image Tooltip Link",
+  description:
+    "When the user clicks the icon that displays the tooltip they are taken to this link",
+};
+
+const imageTooltip: TinaField = {
+  type: "object",
+  name: "tooltip",
+  label: "Tooltipp",
+  fields: [imageTooltipText, imageTooltipLink],
 };
 
 export const image: TinaField = {

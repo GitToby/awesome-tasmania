@@ -1,16 +1,19 @@
-
 import { useTina } from "tinacms/dist/react";
 import {
+  CameraApatureSVG,
+  LinkSVG,
   SocialFacebook,
   SocialInstagram,
   SocialTwitter,
   SocialYoutube,
 } from "./svgs";
 import Link from "next/link";
-import { SocialsData } from "@/types";
+import { ImageDataWrap, SocialsData } from "@/types";
+import { ReactNode } from "react";
 
 type FooterBarProps = {
   socials: SocialsData;
+  image?: ImageDataWrap;
 };
 
 export function FooterBar(props: FooterBarProps) {
@@ -31,6 +34,11 @@ export function FooterBar(props: FooterBarProps) {
         </Link>
       </span>
       <div className="flex gap-2 p-2 rounded-box bg-accent">
+        {props.image.tooltip && (
+          <div className="h-6 w-6">
+            <CameraApatureSVG image={props.image} />
+          </div>
+        )}
         {socialData.facebook && (
           <div className="h-6 w-6 ">
             <SocialFacebook profile={socialData.facebook} />
@@ -57,4 +65,3 @@ export function FooterBar(props: FooterBarProps) {
 }
 
 // Photo by <a href="https://unsplash.com/@lochieriordan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Lochlainn Riordan</a> on <a href="https://unsplash.com/photos/blue-body-of-water-near-mountain-during-daytime-zU4_tCl7ayQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  

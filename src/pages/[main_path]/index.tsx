@@ -28,10 +28,7 @@ const RootPage = (props: RootPageProps) => {
         description: "blah",
         links: pageData.links ? pageData.links.map((l) => l.link as Links) : [],
       }}
-      image={{
-        url: pageData.image.url,
-        alt: pageData.image.alt,
-      }}
+      image={pageData.image}
     >
       <h1 className="mb-5 text-5xl font-bold uppercase">{pageData.title}</h1>
       <div className="mb-5">
@@ -64,8 +61,8 @@ export const getStaticPaths = async () => {
     .filter((post) => post.node && post.node.publish)
     .map((post) => ({
       params: {
-        // This matches the [path].tsx file param
-        // the urls generated will be the same as the file.
+        // This `main_path` matches the [main_path]/index.tsx file param
+        // the urls generated will be the same as the file name.
         main_path: post.node._sys.filename,
       },
     }));

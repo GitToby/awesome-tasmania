@@ -27,6 +27,7 @@ export type RelativePathQuery<T> = {
   variables: Exact<{ relativePath: string }>;
   query: string;
 };
+export type ImageDataWrap = HomePageImage | RootPagesImage;
 
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };

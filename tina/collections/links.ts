@@ -15,6 +15,16 @@ export const links: Collection = {
       description:
         "The URL the link will point to, can be relative to site base or absolute to external sites.",
       required: true,
+      ui: {
+        validate: (value) => {
+          if (
+            value &&
+            (value.startsWith("/") || value.startsWith("https://"))
+          ) {
+            return "URL must be relative, starting with '/', or external, starting with 'https://'";
+          }
+        },
+      },
     },
     {
       type: "boolean",
