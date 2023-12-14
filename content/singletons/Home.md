@@ -1,7 +1,9 @@
 ---
-title: Home Page
-subtitle: Welcome to the template!
-image: /media/images/manja-vitolic-gKXKBY-C-Dk-unsplash.jpg
+title: Awesome Tasmania
+image: /media/images/tasmania-from-space.jpg
+featuredLink1: content/links/login.json
+featuredLink2: content/links/login.json
+featuredLink3: content/links/login.json
 ---
 
-This template is just a demo. Use the links below to find the repo to clone.
+A curated list of Tazzie stuff.

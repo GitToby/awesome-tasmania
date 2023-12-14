@@ -3,16 +3,16 @@ import { useTina } from "tinacms/dist/react";
 import client from "../../../tina/__generated__/client";
 import {
   Exact,
-  PostConnectionQuery,
-  PostConnectionQueryVariables,
-  PostQuery,
+  PostsConnectionQuery,
+  PostsConnectionQueryVariables,
+  PostsQuery,
 } from "../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { NextSeo } from "next-seo";
 
 type BlogPageProps = {
   tina: {
-    data: PostQuery;
+    data: PostsQuery;
     variables: Exact<{ relativePath: string }>;
     query: string;
   };
@@ -24,7 +24,7 @@ const BlogPage = (props: BlogPageProps) => {
     query: props.tina.query,
     variables: props.tina.variables,
   });
-  const postData = data.post;
+  const postData = data.posts;
 
   return (
     <main>
@@ -47,7 +47,7 @@ const BlogPage = (props: BlogPageProps) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const res = await client.queries.post({
+  const res = await client.queries.posts({
     relativePath: `${params.filename}.md`,
   });
 
@@ -59,8 +59,8 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const postsListData = await client.queries.postConnection();
-  const post_routes = postsListData.data.postConnection.edges.map((post) => ({
+  const postsListData = await client.queries.postsConnection();
+  const post_routes = postsListData.data.postsConnection.edges.map((post) => ({
     params: {
       // This matches the [filename].tsx file param
       filename: post.node._sys.filename,

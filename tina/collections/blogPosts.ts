@@ -2,7 +2,7 @@ import { Collection } from "tinacms";
 import { title, body, description } from "../commonFields";
 
 const blogPosts: Collection = {
-  name: "post",
+  name: "posts",
   label: "Posts",
   path: "content/posts",
   fields: [
@@ -25,6 +25,9 @@ const blogPosts: Collection = {
 
   ui: {
     router: ({ document }) => `/blog/${document._sys.filename}`,
+    filename: {
+      slugify: (values) => values?.title.toLowerCase().replace(/ /g, "-")
+    },
   },
 };
 

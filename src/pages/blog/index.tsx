@@ -4,8 +4,8 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
   BlogPageConnectionQuery,
   BlogPageConnectionQueryVariables,
-  PostConnectionQuery,
-  PostConnectionQueryVariables,
+  PostsConnectionQuery,
+  PostsConnectionQueryVariables,
 } from "../../../tina/__generated__/types";
 import Link from "next/link";
 
@@ -16,8 +16,8 @@ type BlogPageProps = {
     query: string;
   };
   postsData: {
-    data: PostConnectionQuery;
-    variables: PostConnectionQueryVariables;
+    data: PostsConnectionQuery;
+    variables: PostsConnectionQueryVariables;
     query: string;
   };
 };
@@ -35,7 +35,7 @@ export default function Page(props: BlogPageProps) {
   });
 
   const pageData = tina.data.blogPageConnection.edges[0]?.node;
-  const posts = postsData.data.postConnection.edges;
+  const posts = postsData.data.postsConnection.edges;
 
   return (
     <main>
@@ -70,9 +70,9 @@ export default function Page(props: BlogPageProps) {
 
 export const getStaticProps = async (): Promise<{ props: BlogPageProps }> => {
   const indexResponse = await client.queries.blogPageConnection();
-  const postsResponse = await client.queries.postConnection();
-  postsResponse.data.postConnection.edges =
-    postsResponse.data.postConnection.edges
+  const postsResponse = await client.queries.postsConnection();
+  postsResponse.data.postsConnection.edges =
+    postsResponse.data.postsConnection.edges
       // include only published posts
       .filter((post) => post.node.publish)
       // sort in descending order, doing this in the graphql is a pain.

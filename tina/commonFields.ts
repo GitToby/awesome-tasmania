@@ -1,4 +1,5 @@
 import { TinaField } from "tinacms";
+import { linkReference } from "./collections/links";
 
 export const title: TinaField = {
   type: "string",
