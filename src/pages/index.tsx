@@ -9,15 +9,9 @@ import {
   SocialsConnectionQueryVariables,
 } from "../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import Link from "next/link";
 import Image from "next/image";
 import { LinkBtn } from "@/components/LinkBtn";
 import { NavBar } from "@/components/NavBar";
-import {
-  SocialFacebook,
-  SocialInstagram,
-  SocialYoutube,
-} from "@/components/socials";
 import { FooterBar } from "@/components/FooterBar";
 
 type HomePageProps = {
@@ -56,42 +50,40 @@ export default function Page(props: HomePageProps) {
           fill
           objectFit="cover"
         ></Image>
-        <div className="hero-overlay bg-opacity-20 flex flex-col justify-between min-h-screen z-10">
+        <div className="hero-overlay bg-opacity-20 flex flex-col justify-between items-center h-full z-10">
           <NavBar tina={props.navData} />
-          <div className="hero-content text-center text-accent">
-            <div className="max-w-md">
-              <h1 className="mb-5 text-5xl font-bold uppercase">
-                {pageData.title}
-              </h1>
-              <div className="mb-5">
-                <TinaMarkdown content={pageData.body} />
-              </div>
-              <div className="flex flex-wrap place-content-center gap-2">
-                {pageData.featuredLink1 && (
-                  <LinkBtn
-                    {...pageData.featuredLink1}
-                    className="basis-1/3 btn-accent  btn-outline"
-                  />
-                )}
-                {pageData.featuredLink2 && (
-                  <LinkBtn
-                    {...pageData.featuredLink2}
-                    className="basis-1/3 btn-accent btn-outline"
-                  />
-                )}
-                {pageData.featuredLink3 && (
-                  <LinkBtn
-                    {...pageData.featuredLink3}
-                    className="basis-1/3 btn-accent btn-outline"
-                  />
-                )}
-                {pageData.featuredLink4 && (
-                  <LinkBtn
-                    {...pageData.featuredLink4}
-                    className="basis-1/3 btn-accent btn-outline"
-                  />
-                )}
-              </div>
+          <div className="hero-content text-center text-accent flex flex-col">
+            <h1 className="mb-5 text-5xl font-bold uppercase">
+              {pageData.title}
+            </h1>
+            <div className="mb-5">
+              <TinaMarkdown content={pageData.body} />
+            </div>
+            <div className="flex flex-wrap place-content-center gap-2">
+              {pageData.featuredLink1 && (
+                <LinkBtn
+                  {...pageData.featuredLink1}
+                  className="basis-1/3 btn-accent  btn-outline"
+                />
+              )}
+              {pageData.featuredLink2 && (
+                <LinkBtn
+                  {...pageData.featuredLink2}
+                  className="basis-1/3 btn-accent btn-outline"
+                />
+              )}
+              {pageData.featuredLink3 && (
+                <LinkBtn
+                  {...pageData.featuredLink3}
+                  className="basis-1/3 btn-accent btn-outline"
+                />
+              )}
+              {pageData.featuredLink4 && (
+                <LinkBtn
+                  {...pageData.featuredLink4}
+                  className="basis-1/3 btn-accent btn-outline"
+                />
+              )}
             </div>
           </div>
           <FooterBar socials={props.socialsData} />
