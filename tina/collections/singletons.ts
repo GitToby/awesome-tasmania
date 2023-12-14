@@ -7,56 +7,8 @@ import { linkReference, listOflinks } from "./links";
 
 const singletonsPath = "content/singletons";
 const singletonAlowedActions = {
-  // create: false,
+  create: false,
   delete: false,
-};
-
-export const navBar: Collection = {
-  name: "navBar",
-  label: "Nav Data",
-  path: singletonsPath,
-  format: "json",
-  fields: [
-    { ...listOflinks, name: "tlLinks", label: "Top Left Links" },
-    { ...listOflinks, name: "trLinks", label: "Top Right Links" },
-  ],
-  ui: {
-    allowedActions: singletonAlowedActions,
-  },
-  match: {
-    include: "nav",
-  },
-};
-
-export const socials: Collection = {
-  name: "socials",
-  label: "Socials",
-  path: singletonsPath,
-  format: "json",
-  fields: [
-    {
-      type: "string",
-      name: "facebook",
-    },
-    {
-      type: "string",
-      name: "instagram",
-    },
-    {
-      type: "string",
-      name: "youtube",
-    },
-    {
-      type: "string",
-      name: "twitter",
-    },
-  ],
-  ui: {
-    allowedActions: singletonAlowedActions,
-  },
-  match: {
-    include: "socials",
-  },
 };
 
 export const homePage: Collection = {
@@ -84,6 +36,58 @@ export const homePage: Collection = {
   },
 };
 
+export const navBar: Collection = {
+  name: "navBar",
+  label: "Site Wide Nav Data",
+  path: singletonsPath,
+  format: "json",
+  fields: [
+    { ...listOflinks, name: "tlLinks", label: "Top Left Links" },
+    { ...listOflinks, name: "trLinks", label: "Top Right Links" },
+  ],
+  ui: {
+    router: null,
+    allowedActions: singletonAlowedActions,
+    global: true,
+  },
+  match: {
+    include: "nav",
+  },
+};
+
+export const socials: Collection = {
+  name: "socials",
+  label: "Site Wide Socials",
+  path: singletonsPath,
+  format: "json",
+  fields: [
+    {
+      type: "string",
+      name: "facebook",
+    },
+    {
+      type: "string",
+      name: "instagram",
+    },
+    {
+      type: "string",
+      name: "youtube",
+    },
+    {
+      type: "string",
+      name: "twitter",
+    },
+  ],
+  ui: {
+    router: null,
+    allowedActions: singletonAlowedActions,
+    global: true,
+  },
+  match: {
+    include: "socials",
+  },
+};
+
 export const blogPage: Collection = {
   name: "blogPage",
   label: "Blog",
@@ -91,7 +95,6 @@ export const blogPage: Collection = {
   format: "md",
   fields: [title, subtitle, body],
   ui: {
-    router: () => `/`,
     allowedActions: singletonAlowedActions,
   },
   match: {

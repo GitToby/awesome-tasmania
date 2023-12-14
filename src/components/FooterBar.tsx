@@ -1,26 +1,16 @@
-import { ReactNode, useEffect, useState } from "react";
-import {
-  Links,
-  SocialsConnectionQuery,
-  SocialsConnectionQueryVariables,
-} from "../../tina/__generated__/types";
-import { LinkBtn } from "./LinkBtn";
-import client from "../../tina/__generated__/client";
+
 import { useTina } from "tinacms/dist/react";
 import {
   SocialFacebook,
   SocialInstagram,
   SocialTwitter,
   SocialYoutube,
-} from "./socials";
+} from "./svgs";
 import Link from "next/link";
+import { SocialsData } from "@/types";
 
 type FooterBarProps = {
-  socials: {
-    data: SocialsConnectionQuery;
-    variables: SocialsConnectionQueryVariables;
-    query: string;
-  };
+  socials: SocialsData;
 };
 
 export function FooterBar(props: FooterBarProps) {
@@ -35,8 +25,10 @@ export function FooterBar(props: FooterBarProps) {
   return (
     <div className="flex justify-between items-center w-full z-50 p-4 text-accent">
       <span className="h-fit">
-        Made by {" "}
-        <Link className="link" href="https://tobydevlin.com">Toby Devlin</Link>
+        Made by{" "}
+        <Link className="link" href="https://tobydevlin.com">
+          Toby Devlin
+        </Link>
       </span>
       <div className="flex gap-2 p-2 rounded-box bg-accent">
         {socialData.facebook && (
@@ -63,3 +55,6 @@ export function FooterBar(props: FooterBarProps) {
     </div>
   );
 }
+
+// Photo by <a href="https://unsplash.com/@lochieriordan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Lochlainn Riordan</a> on <a href="https://unsplash.com/photos/blue-body-of-water-near-mountain-during-daytime-zU4_tCl7ayQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  

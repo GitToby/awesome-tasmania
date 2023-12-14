@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Links } from "../../tina/__generated__/types";
 import Link from "next/link";
+import { ClassNameMixin } from "@/types";
 
 type LinkBtnProps = {
   title: string;
   url: string;
   newTab?: boolean;
   disabled?: boolean;
-  className?: string;
-};
+} & ClassNameMixin;
 
 export function LinkBtn(props: LinkBtnProps) {
   return (
