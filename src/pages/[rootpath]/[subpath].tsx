@@ -26,12 +26,12 @@ const SubPathPage = (props: SubPathProps) => {
       siteData={props.siteData}
       page={{
         title: pageData.title,
-        description: "blah",
+        description: pageData.description,
       }}
       image={pageData.image}
     >
-      <h1 className="mb-5 text-5xl font-bold uppercase">{pageData.title}</h1>
-      <div className="mb-5">
+      <h1 className="text-5xl font-bold uppercase mb-5 ">{pageData.title}</h1>
+      <div className="prose-invert  mb-5">
         <TinaMarkdown content={pageData.body} />
       </div>
     </LandingLayout>

@@ -23,12 +23,12 @@ const RootPage = (props: RootPageProps) => {
       siteData={props.siteData}
       page={{
         title: pageData.title,
-        description: "blah",
+        description: pageData.description,
       }}
       image={pageData.image}
     >
-      <h1 className="mb-5 text-5xl font-bold uppercase">{pageData.title}</h1>
-      <div className="mb-5">
+      <h1 className="text-5xl font-bold uppercase mb-5">{pageData.title}</h1>
+      <div className="prose-invert mb-5">
         <TinaMarkdown content={pageData.body} />
       </div>
     </LandingLayout>
@@ -40,7 +40,7 @@ export const getStaticProps = async ({
 }): Promise<{ props: RootPageProps }> => {
   const siteDataResponse = await client.queries.siteDataConnection();
   const pageDataResponse = await client.queries.rootPages({
-    relativePath: `${params.path}.md`,
+    relativePath: `${params.rootpath}.md`,
   });
 
   return {
@@ -60,6 +60,7 @@ export const getStaticPaths = async () => {
         // This `rootpath` matches the [rootpath]/index.tsx file param
         // the urls generated will be the same as the file name.
         rootpath: post.node._sys.filename,
+        subpath: undefined
       },
     }));
   return {

@@ -37,20 +37,20 @@ export default function Page(props: HomePageProps) {
       }}
       image={pageData.image}
     >
-      <h1 className="mb-5 text-5xl font-bold uppercase">{pageData.title}</h1>
-      <div className="mb-5">
+      <h1 className="text-5xl font-bold uppercase mb-5">{pageData.title}</h1>
+      <div className="prose-invert mb-5">
         <TinaMarkdown content={pageData.body} />
-        {pageLinks && (
-          <div className="flex flex-wrap place-content-center gap-2">
-            {pageLinks.map((link) => (
-              <PageLinkBtn
-                page={link.page as LinkedPage}
-                className="basis-1/3 btn-accent  btn-outline"
-              />
-            ))}
-          </div>
-        )}
       </div>
+      {pageLinks && (
+        <div className="flex flex-wrap place-content-center gap-2">
+          {pageLinks.map((link) => (
+            <PageLinkBtn
+              page={link.page as LinkedPage}
+              className="basis-1/3 btn-accent  btn-outline"
+            />
+          ))}
+        </div>
+      )}
     </LandingLayout>
   );
 }
