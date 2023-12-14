@@ -7,8 +7,8 @@ import {
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { LandingLayout } from "@/components/LandingLayout";
 import { LinkedPage, SiteQueryResponse } from "@/types";
-import { LinkBtn } from "@/components/LinkBtn";
-import { PageLinkBtn } from "@/components/PageLinkBtn";
+import { Linkd } from "@/components/Linkd";
+import { PageLink } from "@/components/PageLink";
 
 type HomePageProps = {
   homeData: {
@@ -44,7 +44,7 @@ export default function Page(props: HomePageProps) {
       {pageLinks && (
         <div className="flex flex-wrap place-content-center gap-2">
           {pageLinks.map((link) => (
-            <PageLinkBtn
+            <PageLink
               page={link.page as LinkedPage}
               className="basis-1/3 btn-accent  btn-outline"
             />

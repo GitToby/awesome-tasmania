@@ -1,18 +1,20 @@
 import Link from "next/link";
 import { ClassNameMixin, LinkedPage } from "@/types";
-import { LinkBtn } from "./LinkBtn";
+import { Linkd } from "./Linkd";
 
 type PageLinkBtnProps = {
+  parentPage?: LinkedPage;
   page: LinkedPage;
 } & ClassNameMixin;
 
-export function PageLinkBtn(props: PageLinkBtnProps) {
+export function PageLink(props: PageLinkBtnProps) {
+  const parentFilename = props.parentPage?._sys.filename;
   const pageFilename = props.page._sys.filename;
-  const pagePath = props.page._sys.breadcrumbs.join("/");
+  const path = [parentFilename, pageFilename].join("/")
   return (
-    <LinkBtn
+    <Linkd
       title={pageFilename}
-      url={`/${pagePath}`}
+      url={path}
       className={props.className}
     />
   );

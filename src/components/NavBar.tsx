@@ -1,9 +1,9 @@
-import { LinkBtn } from "./LinkBtn";
+import { Linkd } from "./Linkd";
 import { useTina } from "tinacms/dist/react";
 import { useRouter } from "next/router";
 import { LinkedPage, SiteQueryResponse } from "@/types";
-import { LoginBtn } from "./LogInButon";
-import { PageLinkBtn } from "./PageLinkBtn";
+import { LoginLink } from "./LogInLink";
+import { PageLink } from "./PageLink";
 
 type NavBarProps = {
   siteData: SiteQueryResponse;
@@ -23,20 +23,20 @@ export function NavBar(props: NavBarProps) {
   return (
     <div className="flex place-content-between w-full z-50 p-4">
       <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
-        <LinkBtn className="btn-accent" title="Home" url="/" />
+        <Linkd className="btn-accent" title="Home" url="/" />
         {navData.navPages &&
           navData.navPages.map((link, idx) => {
             return (
-              <PageLinkBtn
+              <PageLink
                 key={idx}
                 page={link.page as LinkedPage}
-                className="btn-accent"
+                className="btn btn-accent"
               />
             );
           })}
       </div>
       <div className="flex gap-2">
-        <LoginBtn className="btn-outline btn-accent" />
+        <LoginLink className="btn btn-outline btn-accent" />
       </div>
     </div>
   );

@@ -3,7 +3,8 @@ import client from "../../../tina/__generated__/client";
 import { RootPagesQuery } from "../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { LandingLayout } from "@/components/LandingLayout";
-import { RelativePathQuery, SiteQueryResponse } from "@/types";
+import { LinkedPage, RelativePathQuery, SiteQueryResponse } from "@/types";
+import { PageLink } from "@/components/PageLink";
 
 type RootPageProps = {
   pageData: RelativePathQuery<RootPagesQuery>;
@@ -31,6 +32,19 @@ const RootPage = (props: RootPageProps) => {
       <div className="prose-invert mb-5">
         <TinaMarkdown content={pageData.body} />
       </div>
+      {pageData.linkedPages &&
+        pageData.linkedPages.map((linkedPage, idx) => (
+          <div key={idx} className="card bg-base-100 shadow-xl image-full">
+            <figure>
+              <img src={linkedPage.page.image.url} alt="Shoes" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">{linkedPage.page.title}</h2>
+              <p>{linkedPage.page.description}</p>
+              <PageLink parentPage={pageData as LinkedPage} page={linkedPage.page as LinkedPage} className="" />
+            </div>
+          </div>
+        ))}
     </LandingLayout>
   );
 };
@@ -60,7 +74,7 @@ export const getStaticPaths = async () => {
         // This `rootpath` matches the [rootpath]/index.tsx file param
         // the urls generated will be the same as the file name.
         rootpath: post.node._sys.filename,
-        subpath: undefined
+        subpath: undefined,
       },
     }));
   return {

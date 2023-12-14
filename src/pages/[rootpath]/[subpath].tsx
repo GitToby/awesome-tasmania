@@ -44,6 +44,7 @@ export const getStaticProps = async ({
   const siteDataResponse = await client.queries.siteDataConnection();
 
   // the props are pulled purly from the content page
+  // todo: link the upstream page somehow.
   const pageDataResponse = await client.queries.contentPages({
     relativePath: `${params.subpath}.md`,
   });

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LinkBtn } from "@/components/LinkBtn";
+import { Linkd } from "@/components/Linkd";
 import { NavBar } from "@/components/NavBar";
 import { FooterBar } from "@/components/FooterBar";
 import { NextSeo } from "next-seo";

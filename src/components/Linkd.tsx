@@ -8,7 +8,7 @@ type LinkBtnProps = {
   disabled?: boolean;
 } & ClassNameMixin;
 
-export function LinkBtn(props: LinkBtnProps) {
+export function Linkd(props: LinkBtnProps) {
   return (
     <Link
       href={props.url}
