@@ -1,29 +1,27 @@
 import { useTina } from "tinacms/dist/react";
 import {
   CameraApatureSVG,
-  LinkSVG,
   SocialFacebook,
   SocialInstagram,
   SocialTwitter,
   SocialYoutube,
 } from "./svgs";
 import Link from "next/link";
-import { ImageDataWrap, SocialsData } from "@/types";
-import { ReactNode } from "react";
+import { PageImage, SiteQueryResponse } from "@/types";
 
 type FooterBarProps = {
-  socials: SocialsData;
-  image?: ImageDataWrap;
+  siteData: SiteQueryResponse;
+  image?: PageImage;
 };
 
 export function FooterBar(props: FooterBarProps) {
   const tina = useTina({
-    data: props.socials.data,
-    query: props.socials.query,
-    variables: props.socials.variables,
+    data: props.siteData.data,
+    query: props.siteData.query,
+    variables: props.siteData.variables,
   });
 
-  const socialData = tina.data.socialsConnection.edges![0]?.node;
+  const socialData = tina.data.siteDataConnection.edges![0]?.node;
 
   return (
     <div className="flex justify-between items-center w-full z-50 p-4 text-accent">

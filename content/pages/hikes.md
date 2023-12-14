@@ -1,15 +1,15 @@
 ---
 title: Hikes
-description: Here are some hikes that Helen and i have done around Tazzie
+description: >-
+  Tasmania bosts some of the best gin and wiskey distillaries in the country,
+  weve collected some of our faves here.
 image:
-  url: /media/images/20231213_152614.jpg
-  alt: Closed Trail.
+  url: /media/images/wineglass-bay-backdrop.jpg
+  alt: Wineglass Bay
   tooltip:
-    text: picture by Toby
-    link: 'https://tobydevlin.com'
+    text: Photo by Lochlainn Riordan on Unsplash
+    link: 'https://unsplash.com/@lochieriordan'
 publish: true
-links:
-  - link: content/links/distillers.json
 ---
 
-Some are good, and some have dead ends...
+This i will fill in later with some content

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { Links } from "../../tina/__generated__/types";
 import Link from "next/link";
 import { ClassNameMixin } from "@/types";
 

@@ -3,11 +3,12 @@ import client from "../../tina/__generated__/client";
 import {
   HomePageConnectionQuery,
   HomePageConnectionQueryVariables,
-  Links,
 } from "../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { LandingLayout } from "@/components/LandingLayout";
-import { NavData, SocialsData } from "@/types";
+import { LinkedPage, SiteQueryResponse } from "@/types";
+import { LinkBtn } from "@/components/LinkBtn";
+import { PageLinkBtn } from "@/components/PageLinkBtn";
 
 type HomePageProps = {
   homeData: {
@@ -15,8 +16,7 @@ type HomePageProps = {
     variables: HomePageConnectionQueryVariables;
     query: string;
   };
-  navData: NavData;
-  socialsData: SocialsData;
+  siteData: SiteQueryResponse;
 };
 
 export default function Page(props: HomePageProps) {
@@ -27,41 +27,42 @@ export default function Page(props: HomePageProps) {
   });
 
   const pageData = homeData.data.homePageConnection.edges![0]?.node;
-
+  const pageLinks = pageData.linkedPages;
   return (
     <LandingLayout
-      navData={props.navData}
-      socialsData={props.socialsData}
+      siteData={props.siteData}
       page={{
         title: pageData.title,
         description: "blah",
-        links: [
-          pageData.featuredLink1,
-          pageData.featuredLink2,
-          pageData.featuredLink3,
-          pageData.featuredLink4,
-        ] as Links[],
       }}
       image={pageData.image}
     >
       <h1 className="mb-5 text-5xl font-bold uppercase">{pageData.title}</h1>
       <div className="mb-5">
         <TinaMarkdown content={pageData.body} />
+        {pageLinks && (
+          <div className="flex flex-wrap place-content-center gap-2">
+            {pageLinks.map((link) => (
+              <PageLinkBtn
+                page={link.page as LinkedPage}
+                className="basis-1/3 btn-accent  btn-outline"
+              />
+            ))}
+          </div>
+        )}
       </div>
     </LandingLayout>
   );
 }
 
 export const getStaticProps = async (): Promise<{ props: HomePageProps }> => {
-  const indexResponse = await client.queries.homePageConnection();
-  const navResponse = await client.queries.navBarConnection();
-  const socialsResponse = await client.queries.socialsConnection();
+  const pageDataResponse = await client.queries.homePageConnection();
+  const siteDataResponse = await client.queries.siteDataConnection();
 
   return {
     props: {
-      homeData: indexResponse,
-      navData: navResponse,
-      socialsData: socialsResponse,
+      homeData: pageDataResponse,
+      siteData: siteDataResponse,
     },
   };
 };

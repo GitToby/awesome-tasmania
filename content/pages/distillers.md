@@ -12,4 +12,4 @@ image:
 publish: true
 ---
 
-This i will fill in later with some content
+This I will fill in later with some content

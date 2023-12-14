@@ -2,23 +2,21 @@ import { ReactNode } from "react";
 import {
   Exact,
   HomePageImage,
-  NavBarConnectionQuery,
-  NavBarConnectionQueryVariables,
-  RootPages,
+  HomePageLinkedPagesPage,
   RootPagesImage,
-  SocialsConnectionQuery,
-  SocialsConnectionQueryVariables,
+  RootPagesLinkedPagesPage,
+  SiteDataConnectionQuery,
+  SiteDataConnectionQueryVariables,
 } from "../tina/__generated__/types";
 
-export type NavData = {
-  data: NavBarConnectionQuery;
-  variables: NavBarConnectionQueryVariables;
-  query: string;
-};
-
-export type SocialsData = {
-  data: SocialsConnectionQuery;
-  variables: SocialsConnectionQueryVariables;
+export type SiteQueryResponse = {
+  data: SiteDataConnectionQuery;
+  errors?: {
+    message: string;
+    locations: { line: number; column: number }[];
+    path: string[];
+  }[];
+  variables: SiteDataConnectionQueryVariables;
   query: string;
 };
 
@@ -27,7 +25,8 @@ export type RelativePathQuery<T> = {
   variables: Exact<{ relativePath: string }>;
   query: string;
 };
-export type ImageDataWrap = HomePageImage | RootPagesImage;
 
+export type PageImage = HomePageImage | RootPagesImage;
+export type LinkedPage = HomePageLinkedPagesPage | RootPagesLinkedPagesPage;
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };

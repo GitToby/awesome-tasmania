@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev -H 0.0.0.0 -p 80\"",
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev -H 0.0.0.0\"",
     "build": "tinacms build && next build",
     "start": "next start",
     "lint": "next lint"

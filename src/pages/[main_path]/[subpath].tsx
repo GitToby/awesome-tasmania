@@ -37,7 +37,7 @@ const RootPage = (props: RootPageProps) => {
 
 export const getStaticProps = async ({ params }) => {
   const siteDataResponse = await client.queries.siteDataConnection();
-  const pageDataResponse = await client.queries.rootPages({
+  const pageDataResponse = await client.queries.contentPages({
     relativePath: `${params.main_path}.md`,
   });
 

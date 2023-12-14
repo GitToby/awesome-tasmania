@@ -1,39 +1,42 @@
 import { LinkBtn } from "./LinkBtn";
 import { useTina } from "tinacms/dist/react";
 import { useRouter } from "next/router";
-import { NavData } from "@/types";
+import { LinkedPage, SiteQueryResponse } from "@/types";
+import { LoginBtn } from "./LogInButon";
+import { PageLinkBtn } from "./PageLinkBtn";
 
 type NavBarProps = {
-  navData: NavData;
+  siteData: SiteQueryResponse;
 };
 
 export function NavBar(props: NavBarProps) {
   const tina = useTina({
-    data: props.navData.data,
-    query: props.navData.query,
-    variables: props.navData.variables,
+    data: props.siteData.data,
+    query: props.siteData.query,
+    variables: props.siteData.variables,
   });
 
-  const navData = tina.data.navBarConnection.edges![0]?.node;
+  const navData = tina.data.siteDataConnection.edges![0]?.node;
   const router = useRouter();
   const isRoot = router.asPath === "/";
 
   return (
     <div className="flex place-content-between w-full z-50 p-4">
       <div className="flex flex-col gap-2">
-        {!isRoot && (
-          <LinkBtn className="btn-outline btn-accent" title="Home" url="/" />
-        )}
-        {navData.tlLinks &&
-          navData.tlLinks.map((link) => (
-            <LinkBtn {...link.link} className="btn-outline btn-accent" />
-          ))}
+        <LinkBtn className="btn-accent" title="Home" url="/" />
+        {navData.navPages &&
+          navData.navPages.map((link, idx) => {
+            return (
+              <PageLinkBtn
+                key={idx}
+                page={link.page as LinkedPage}
+                className="btn-accent"
+              />
+            );
+          })}
       </div>
       <div className="flex gap-2">
-        {navData.trLinks &&
-          navData.trLinks.map((link) => (
-            <LinkBtn {...link.link} className="btn-outline btn-accent" />
-          ))}
+        <LoginBtn className="btn-outline btn-accent" />
       </div>
     </div>
   );
