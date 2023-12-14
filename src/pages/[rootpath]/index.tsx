@@ -35,10 +35,12 @@ const RootPage = (props: RootPageProps) => {
   );
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({
+  params,
+}): Promise<{ props: RootPageProps }> => {
   const siteDataResponse = await client.queries.siteDataConnection();
-  const pageDataResponse = await client.queries.contentPages({
-    relativePath: `${params.main_path}.md`,
+  const pageDataResponse = await client.queries.rootPages({
+    relativePath: `${params.path}.md`,
   });
 
   return {
@@ -55,9 +57,9 @@ export const getStaticPaths = async () => {
     .filter((post) => post.node && post.node.publish)
     .map((post) => ({
       params: {
-        // This `main_path` matches the [main_path]/index.tsx file param
+        // This `rootpath` matches the [rootpath]/index.tsx file param
         // the urls generated will be the same as the file name.
-        main_path: post.node._sys.filename,
+        rootpath: post.node._sys.filename,
       },
     }));
   return {

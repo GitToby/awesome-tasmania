@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import {
+  ContentPagesImage,
   Exact,
   HomePageImage,
   HomePageLinkedPagesPage,
@@ -26,7 +27,7 @@ export type RelativePathQuery<T> = {
   query: string;
 };
 
-export type PageImage = HomePageImage | RootPagesImage;
+export type PageImage = HomePageImage | RootPagesImage | ContentPagesImage;
 export type LinkedPage = HomePageLinkedPagesPage | RootPagesLinkedPagesPage;
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };

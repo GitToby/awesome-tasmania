@@ -10,6 +10,8 @@ image:
     text: Photo by Lochlainn Riordan on Unsplash
     link: 'https://unsplash.com/@lochieriordan'
 publish: true
+linkedPages:
+  - page: content/content-pages/im-a-content-page.md
 ---
 
 This i will fill in later with some content

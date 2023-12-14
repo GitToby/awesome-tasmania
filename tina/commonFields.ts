@@ -99,40 +99,19 @@ const url: TinaField = {
   required: true,
   ui: {
     validate: (value) => {
-      if (value && (value.startsWith("/") || value.startsWith("https://"))) {
-        return "URL must be relative, starting with '/', or external, starting with 'https://'";
+      if (value && value.startsWith("https://")) {
+        return "External links must start with 'https://'";
       }
     },
   },
 };
 
-export const link: TinaField = {
+export const externalLink: TinaField = {
   type: "object",
   name: "link",
-  label: "Link",
-  fields: [
-    description,
-    url,
-    {
-      type: "boolean",
-      name: "newTab",
-      label: "Open In New Tab",
-      description: "This will open the link in a new tab when clicked.",
-    },
-  ],
-};
-
-export const links: TinaField = {
-  type: "object",
-  name: "links",
-  label: "Links",
-  list: true,
-  fields: [link],
-  ui: {
-    itemProps: (item) => {
-      return { label: item?.url };
-    },
-  },
+  label: "External Link",
+  description: "Link to an external page.",
+  fields: [description, url],
 };
 
 export const page: TinaField = {

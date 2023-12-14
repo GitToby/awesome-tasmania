@@ -1,5 +1,5 @@
 import { Collection, Template } from "tinacms";
-import { title, body, image, links, linkedPages } from "../commonFields";
+import { title, body, image, linkedPages } from "../commonFields";
 
 // This is a set of collections where there will be only one document per, with all the fields.
 // Its possible thanks to singletonAlowedActions and match.include
