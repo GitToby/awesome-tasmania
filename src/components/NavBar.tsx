@@ -22,7 +22,7 @@ export function NavBar(props: NavBarProps) {
 
   return (
     <div className="flex place-content-between w-full z-50 p-4">
-      <div className="flex flex-col gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
         <LinkBtn className="btn-accent" title="Home" url="/" />
         {navData.navPages &&
           navData.navPages.map((link, idx) => {
