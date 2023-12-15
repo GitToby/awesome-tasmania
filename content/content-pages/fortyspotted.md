@@ -5,7 +5,7 @@ rootPage: content/pages/distilleries.md
 image:
   url: public/media/images/fortyspottedgin.jpg
   alt: Forty Spotted Gin Image
- link:
+link:
   description: Visit forty spotted
   url: https://www.fortyspotted.com
 iframeUrl: >-
