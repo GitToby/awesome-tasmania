@@ -32,19 +32,25 @@ const RootPage = (props: RootPageProps) => {
       <div className="prose-invert mb-5">
         <TinaMarkdown content={pageData.body} />
       </div>
-      {pageData.linkedPages &&
-        pageData.linkedPages.map((linkedPage, idx) => (
-          <div key={idx} className="card bg-base-100 shadow-xl image-full">
-            <figure>
-              <img src={linkedPage.page.image.url} alt="Shoes" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{linkedPage.page.title}</h2>
-              <p>{linkedPage.page.description}</p>
-              <PageLink parentPage={pageData as LinkedPage} page={linkedPage.page as LinkedPage} className="" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {pageData.linkedPages &&
+          pageData.linkedPages.map((linkedPage, idx) => (
+            <div key={idx} className="card bg-base-100 shadow-xl image-full">
+              <figure>
+                <img src={linkedPage.page.image.url} alt="Shoes" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{linkedPage.page.title}</h2>
+                <p>{linkedPage.page.description}</p>
+                <PageLink
+                  parentPage={pageData as LinkedPage}
+                  page={linkedPage.page as LinkedPage}
+                  className=""
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
     </LandingLayout>
   );
 };

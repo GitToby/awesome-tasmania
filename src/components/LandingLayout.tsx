@@ -12,19 +12,22 @@ type LandinglayoutProps = {
     title: string;
     description: string;
   };
-  image: PageImage;
+  image?: PageImage;
 } & ChildrenMixin;
 
 export function LandingLayout(props: LandinglayoutProps) {
   const router = useRouter();
   const canonical = `something${router.asPath}`;
+
+  const image = props.image? props.image : props.siteData.data.siteDataConnection.edges[0].node.fallbackImg
+
   return (
     <main>
       <NextSeo title={props.page.title} description={props.page.description} />
       <div className="relative hero min-h-screen w-screen bg-accent-content">
         <Image
-          src={props.image.url}
-          alt={props.image.alt}
+          src={image.url}
+          alt={image.alt}
           fill
           objectFit="cover"
         ></Image>
