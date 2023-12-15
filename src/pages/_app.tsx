@@ -18,8 +18,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <div className={[font.className].join(" ")}>
       <DefaultSeo
         title="Home"
-        titleTemplate="%s | Next Tina Tailwind"
-        description="This is tobys template for the Next Tina Tailwind combo."
+        titleTemplate="%s | Awesome Tasmania"
+        description="Embrace Awesome Tasmania, an island where nature unfolds its grandeur and spirited adventure beckons around every bend. From breathtaking landscapes to thrilling escapades, immerse yourself in a world where awe meets discovery. Experience the extraordinary on this Australian gem that promises endless wonder at every turn."
         canonical={url}
       />
       <AwaitHydration>
