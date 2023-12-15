@@ -19,9 +19,15 @@
     }
   },
   "facebook": "",
-  "instagram": "hellywelly93",
+  "instagram": "",
   "youtube": "",
   "footerLinks": [
+    {
+      "link": {
+        "description": "Login",
+        "url": "/admin/index.html"
+      }
+    },
     {
       "link": {
         "description": "Home",
