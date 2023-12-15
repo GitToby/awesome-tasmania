@@ -1,26 +1,39 @@
 import { ReactNode } from "react";
 import {
-  ContentPagesImage,
+  ContentPage,
+  ContentPageConnectionQuery,
+  ContentPageConnectionQueryVariables,
+  ContentPageImage,
   Exact,
   HomePageImage,
-  HomePageLinkedPagesPage,
-  RootPagesImage,
-  RootPagesLinkedPagesPage,
+  HomePageLinkedPagesLinkedPage,
+  RootPage,
+  RootPageImage,
   SiteDataConnectionQuery,
   SiteDataConnectionQueryVariables,
   SiteDataFallbackImg,
 } from "../tina/__generated__/types";
 
-export type SiteQueryResponse = {
-  data: SiteDataConnectionQuery;
+type QueryResponse<Q, QV> = {
+  data: Q;
   errors?: {
     message: string;
     locations: { line: number; column: number }[];
     path: string[];
   }[];
-  variables: SiteDataConnectionQueryVariables;
+  variables: QV;
   query: string;
 };
+
+export type ContentPageQueryResponse = QueryResponse<
+  ContentPageConnectionQuery,
+  ContentPageConnectionQueryVariables
+>;
+
+export type SiteDataQueryResponse = QueryResponse<
+  SiteDataConnectionQuery,
+  SiteDataConnectionQueryVariables
+>;
 
 export type RelativePathQuery<T> = {
   data: T;
@@ -28,7 +41,11 @@ export type RelativePathQuery<T> = {
   query: string;
 };
 
-export type PageImage = HomePageImage | RootPagesImage | ContentPagesImage | SiteDataFallbackImg;
-export type LinkedPage = HomePageLinkedPagesPage | RootPagesLinkedPagesPage;
+export type PageImage =
+  | HomePageImage
+  | RootPageImage
+  | ContentPageImage
+  | SiteDataFallbackImg;
+export type LinkedPage = RootPage | ContentPage;
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };

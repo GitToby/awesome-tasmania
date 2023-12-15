@@ -6,8 +6,6 @@ image:
   tooltip:
     text: 'Jacques Descloitres, MODIS Rapid Response Team, NASA/GSFC'
     link: 'https://visibleearth.nasa.gov/images/72500/tasmania'
-pages:
-  - {}
 ---
 
 A curated list of Tazzie stuff. Under construction.

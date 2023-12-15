@@ -1,13 +1,28 @@
 import { Collection } from "tinacms";
-import { title, body, description, externalLink, image } from "../commonFields";
+import {
+  title,
+  body,
+  description,
+  externalLink,
+  image,
+  linkedrootPage,
+} from "../commonFields";
 
 const contentPages: Collection = {
-  name: "contentPages",
-  label: "Content Pages",
+  name: "contentPage",
+  label: "Content Page",
   path: "content/content-pages",
-  fields: [title, description, body, externalLink, image],
+  fields: [
+    title,
+    description,
+    { ...linkedrootPage, label: "Parent Page" },
+    body,
+    externalLink,
+    image,
+  ],
   ui: {
-    router: ({ document }) => `/${document._sys.filename}`,
+    // currently cant place data from the document in the path.
+    // router: (x) => JSON.stringify(x),
     filename: {
       slugify: (values) => values?.title?.toLowerCase().replace(/ /g, "-"),
       readonly: false,

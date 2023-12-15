@@ -1,4 +1,4 @@
-import { Collection, Template } from "tinacms";
+import { Collection } from "tinacms";
 import { title, body, image, linkedPages } from "../commonFields";
 
 // This is a set of collections where there will be only one document per, with all the fields.
@@ -11,7 +11,7 @@ export const homePage: Collection = {
   format: "md",
   fields: [title, image, body, linkedPages],
   ui: {
-    router: () => `/`,
+    // router: () => `/`,
     allowedActions: {
       create: false,
       delete: false,

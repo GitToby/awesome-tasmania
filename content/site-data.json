@@ -1,10 +1,13 @@
 {
-  "navPages": [
+  "linkedPages": [
     {
-      "page": "content/pages/distillers.md"
+      "linkedPage": "content/pages/spas.md"
     },
     {
-      "page": "content/pages/hikes.md"
+      "linkedPage": "content/pages/distillers.md"
+    },
+    {
+      "linkedPage": "content/pages/hikes.md"
     }
   ],
   "fallbackImg": {

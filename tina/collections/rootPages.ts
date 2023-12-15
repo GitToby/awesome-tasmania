@@ -1,18 +1,18 @@
-import { Collection, TinaField } from "tinacms";
+import { Collection } from "tinacms";
 import {
   title,
   body,
   description,
   image,
   publish,
-  linkedPages,
+  linkedPage,
 } from "../commonFields";
 
 export const rootPages: Collection = {
-  name: "rootPages",
-  label: "Root Pages",
+  name: "rootPage",
+  label: "Root Page",
   path: "content/pages",
-  fields: [title, description, body, image, publish, linkedPages],
+  fields: [title, description, body, image, publish],
   ui: {
     router: ({ document }) => `/${document._sys.filename}`,
     filename: {

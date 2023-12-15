@@ -6,7 +6,7 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { ChildrenMixin, PageImage, SiteDataQueryResponse } from "@/types";
 
-type LandinglayoutProps = {
+type ContentLayoutProps = {
   siteData: SiteDataQueryResponse;
   page: {
     title: string;
@@ -15,7 +15,7 @@ type LandinglayoutProps = {
   image?: PageImage;
 } & ChildrenMixin;
 
-export function LandingLayout(props: LandinglayoutProps) {
+export function ContentLayout(props:ContentLayoutProps) {
   const router = useRouter();
   const canonical = `something${router.asPath}`;
 

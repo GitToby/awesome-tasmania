@@ -1,17 +1,15 @@
 ---
-title: Im a content page
+title: Im a content page 2
 description: im just a test. Ill make more later.
 rootPage: content/pages/hikes.md
 link:
   description: Tobydevlin.com
   url: 'https://tobydevlin.com'
 image:
-  url: /media/images/annie-spratt-tKpA64QrccM-unsplash.jpg
-  alt: Barrels used in distilling
+  url: https://source.unsplash.com/random
+  alt: Random image
   tooltip:
-    text: Photo by Matt Hoffman on Unsplash
-    link: >-
-      https://unsplash.com/@__matthoffman__?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash
+    text: Random image from unsplash
 ---
 
 This I will fill in later with some content. Some of these will have lots of wording.

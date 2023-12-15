@@ -1,16 +1,17 @@
 import { useTina } from "tinacms/dist/react";
 import client from "../../../tina/__generated__/client";
 import {
-  ContentPagesQuery,
-  RootPagesQuery,
+  ContentPageQuery,
+  RootPageQuery,
 } from "../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { LandingLayout } from "@/components/LandingLayout";
-import { RelativePathQuery, SiteQueryResponse } from "@/types";
+import { RelativePathQuery, SiteDataQueryResponse } from "@/types";
+import { ContentLayout } from "@/components/ContentLayout";
 
 type SubPathProps = {
-  pageData: RelativePathQuery<ContentPagesQuery>;
-  siteData: SiteQueryResponse;
+  pageData: RelativePathQuery<ContentPageQuery>;
+  siteData: SiteDataQueryResponse;
 };
 
 const SubPathPage = (props: SubPathProps) => {
@@ -19,10 +20,10 @@ const SubPathPage = (props: SubPathProps) => {
     query: props.pageData.query,
     variables: props.pageData.variables,
   });
-  const pageData = data.contentPages;
+  const pageData = data.contentPage;
 
   return (
-    <LandingLayout
+    <ContentLayout
       siteData={props.siteData}
       page={{
         title: pageData.title,
@@ -32,9 +33,10 @@ const SubPathPage = (props: SubPathProps) => {
     >
       <h1 className="text-5xl font-bold uppercase mb-5 ">{pageData.title}</h1>
       <div className="prose-invert  mb-5">
+        <h2>{pageData.description}</h2>
         <TinaMarkdown content={pageData.body} />
       </div>
-    </LandingLayout>
+    </ContentLayout>
   );
 };
 
@@ -45,7 +47,7 @@ export const getStaticProps = async ({
 
   // the props are pulled purly from the content page
   // todo: link the upstream page somehow.
-  const pageDataResponse = await client.queries.contentPages({
+  const pageDataResponse = await client.queries.contentPage({
     relativePath: `${params.subpath}.md`,
   });
 
@@ -58,28 +60,19 @@ export const getStaticProps = async ({
 };
 
 export const getStaticPaths = async () => {
-  const rootPages = await client.queries.rootPagesConnection();
-  // subpaths are defined off linked documents in root pages
-  const contentPathParams = rootPages.data.rootPagesConnection.edges
-    .filter((page) => page.node && page.node.publish)
-    .map((page) => {
-      const linkedPages = page.node.linkedPages;
-      let subpagePaths: string[] = [];
-      // each linked page maps to subpath
-      if (linkedPages) {
-        subpagePaths = page.node.linkedPages.map(
-          (linkedPage) => linkedPage.page._sys.filename
-        );
-      }
-      // format the correct paremeter object to put back int paths
-      return subpagePaths.map((pagePath) => ({
-        params: {
-          rootpath: page.node._sys.filename,
-          subpath: pagePath,
-        },
-      }));
-    })
-    .flat();
+  const contentPages = await client.queries.contentPageConnection();
+
+  const contentPathParams = contentPages.data.contentPageConnection.edges
+    // only include those with linked and published root pages
+    .filter((page) => page.node.rootPage && page.node.rootPage.publish)
+    // form the correct paths
+    .map((page) => ({
+      params: {
+        rootpath: page.node.rootPage._sys.filename,
+        subpath: page.node._sys.filename,
+      },
+    }));
+
   return {
     paths: contentPathParams,
     fallback: false,

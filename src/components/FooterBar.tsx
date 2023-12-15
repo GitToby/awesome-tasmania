@@ -7,10 +7,10 @@ import {
   SocialYoutube,
 } from "./svgs";
 import Link from "next/link";
-import { PageImage, SiteQueryResponse } from "@/types";
+import { PageImage, SiteDataQueryResponse } from "@/types";
 
 type FooterBarProps = {
-  siteData: SiteQueryResponse;
+  siteData: SiteDataQueryResponse;
   image?: PageImage;
 };
 
@@ -24,14 +24,14 @@ export function FooterBar(props: FooterBarProps) {
   const socialData = tina.data.siteDataConnection.edges![0]?.node;
 
   return (
-    <div className="flex justify-between items-center w-full z-50 p-4 text-accent">
+    <div className="flex justify-between items-center w-full z-50 p-4 text-primary">
       <span className="h-fit">
         Made by{" "}
         <Link className="link" href="https://tobydevlin.com">
           Toby Devlin
         </Link>
       </span>
-      <div className="flex gap-2 p-2 rounded-box bg-accent">
+      <div className="flex gap-2 p-2 rounded-box bg-primary">
         {props.image.tooltip && (
           <div className="h-6 w-6">
             <CameraApatureSVG image={props.image} />

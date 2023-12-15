@@ -11,8 +11,6 @@ export const siteData: Collection = {
   fields: [
     {
       ...linkedPages,
-      name: "navPages",
-      label: "Nav Pages",
       description: "Pages to link to via the left hand side nav links",
     },
     {
@@ -53,7 +51,7 @@ export const siteData: Collection = {
         values?.title?.toLowerCase().replace(/ /g, "-"),
       readonly: true,
     },
-    global: true,
+    global: true
   },
   match: {
     include: "site-data",

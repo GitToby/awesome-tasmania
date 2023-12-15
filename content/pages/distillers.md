@@ -8,7 +8,8 @@ image:
   alt: Barrels used in distilling
   tooltip:
     text: Photo by Matt Hoffman on Unsplash
-    link: https://unsplash.com/@__matthoffman__?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash
+    link: >-
+      https://unsplash.com/@__matthoffman__?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash
 publish: true
 ---
 

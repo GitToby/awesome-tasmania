@@ -78,7 +78,7 @@ const imageTooltipLink: TinaField = {
 const imageTooltip: TinaField = {
   type: "object",
   name: "tooltip",
-  label: "Tooltipp",
+  label: "Tooltip",
   fields: [imageTooltipText, imageTooltipLink],
 };
 
@@ -86,7 +86,6 @@ export const image: TinaField = {
   type: "object",
   name: "image",
   label: "Image",
-  required: true,
   fields: [_image, imageAlt, imageTooltip],
 };
 
@@ -97,13 +96,6 @@ const url: TinaField = {
   description:
     "The URL the link will point to, can be relative to site base or absolute to external sites.",
   required: true,
-  ui: {
-    validate: (value) => {
-      if (value && value.startsWith("https://")) {
-        return "External links must start with 'https://'";
-      }
-    },
-  },
 };
 
 export const externalLink: TinaField = {
@@ -114,12 +106,19 @@ export const externalLink: TinaField = {
   fields: [description, url],
 };
 
-export const page: TinaField = {
+export const linkedrootPage: TinaField = {
   type: "reference",
-  name: "page",
-  label: "Linked Page",
+  name: "rootPage",
+  label: "Linked Root Page",
   required: true,
-  collections: ["rootPages", "contentPages"],
+  collections: ["rootPage"],
+};
+
+export const linkedPage: TinaField = {
+  type: "reference",
+  name: "linkedPage",
+  label: "Linked Page",
+  collections: ["rootPage", "contentPage"],
 };
 
 export const linkedPages: TinaField = {
@@ -127,10 +126,10 @@ export const linkedPages: TinaField = {
   name: "linkedPages",
   label: "Linked Pages",
   list: true,
-  fields: [page],
+  fields: [linkedPage],
   ui: {
     itemProps: (item) => {
-      return { label: item?.page };
+      return { label: `Linked page: ${item.linkedPage}` };
     },
   },
 };

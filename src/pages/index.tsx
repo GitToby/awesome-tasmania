@@ -6,8 +6,7 @@ import {
 } from "../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { LandingLayout } from "@/components/LandingLayout";
-import { LinkedPage, SiteQueryResponse } from "@/types";
-import { Linkd } from "@/components/Linkd";
+import { LinkedPage, SiteDataQueryResponse } from "@/types";
 import { PageLink } from "@/components/PageLink";
 
 type HomePageProps = {
@@ -16,7 +15,7 @@ type HomePageProps = {
     variables: HomePageConnectionQueryVariables;
     query: string;
   };
-  siteData: SiteQueryResponse;
+  siteData: SiteDataQueryResponse;
 };
 
 export default function Page(props: HomePageProps) {
@@ -43,12 +42,13 @@ export default function Page(props: HomePageProps) {
       </div>
       {pageLinks && (
         <div className="flex flex-wrap place-content-center gap-2">
-          {pageLinks.map((link) => (
-            <PageLink
-              page={link.page as LinkedPage}
-              className="basis-1/3 btn-accent  btn-outline"
-            />
-          ))}
+          {pageLinks &&
+            pageLinks.map((link) => (
+              <PageLink
+                page={link.linkedPage as LinkedPage}
+                className="basis-1/3 btn-primary  btn-outline"
+              />
+            ))}
         </div>
       )}
     </LandingLayout>

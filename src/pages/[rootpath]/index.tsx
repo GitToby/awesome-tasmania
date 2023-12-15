@@ -1,23 +1,29 @@
 import { useTina } from "tinacms/dist/react";
 import client from "../../../tina/__generated__/client";
-import { RootPagesQuery } from "../../../tina/__generated__/types";
+import { RootPageQuery } from "../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { LandingLayout } from "@/components/LandingLayout";
-import { LinkedPage, RelativePathQuery, SiteQueryResponse } from "@/types";
+import {
+  ContentPageQueryResponse,
+  LinkedPage,
+  RelativePathQuery,
+  SiteDataQueryResponse,
+} from "@/types";
 import { PageLink } from "@/components/PageLink";
+import { PageCard } from "@/components/PageCard";
 
 type RootPageProps = {
-  pageData: RelativePathQuery<RootPagesQuery>;
-  siteData: SiteQueryResponse;
+  pageData: RelativePathQuery<RootPageQuery>;
+  linkedContentPages: ContentPageQueryResponse;
+  siteData: SiteDataQueryResponse;
 };
 
 const RootPage = (props: RootPageProps) => {
-  const { data } = useTina({
-    data: props.pageData.data,
-    query: props.pageData.query,
-    variables: props.pageData.variables,
-  });
-  const pageData = data.rootPages;
+  const tinaRes = useTina({ ...props.pageData });
+  const pageData = tinaRes.data.rootPage;
+
+  const tinaResContentPages = useTina({ ...props.linkedContentPages });
+  const linkedPages = tinaResContentPages.data.contentPageConnection.edges;
 
   return (
     <LandingLayout
@@ -32,24 +38,17 @@ const RootPage = (props: RootPageProps) => {
       <div className="prose-invert mb-5">
         <TinaMarkdown content={pageData.body} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {pageData.linkedPages &&
-          pageData.linkedPages.map((linkedPage, idx) => (
-            <div key={idx} className="card bg-base-100 shadow-xl image-full">
-              <figure>
-                <img src={linkedPage.page.image.url} alt="Shoes" />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{linkedPage.page.title}</h2>
-                <p>{linkedPage.page.description}</p>
-                <PageLink
-                  parentPage={pageData as LinkedPage}
-                  page={linkedPage.page as LinkedPage}
-                  className=""
-                />
-              </div>
-            </div>
-          ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {linkedPages &&
+          linkedPages.map((page, idx) => {
+            const linkedPage = page.node;
+            return (
+              <PageCard
+                page={linkedPage as LinkedPage}
+                parentPage={pageData as LinkedPage}
+              />
+            );
+          })}
       </div>
     </LandingLayout>
   );
@@ -59,21 +58,34 @@ export const getStaticProps = async ({
   params,
 }): Promise<{ props: RootPageProps }> => {
   const siteDataResponse = await client.queries.siteDataConnection();
-  const pageDataResponse = await client.queries.rootPages({
+
+  const pageDataResponse = await client.queries.rootPage({
     relativePath: `${params.rootpath}.md`,
+  });
+
+  const linkedPagesResponse = await client.queries.contentPageConnection({
+    filter: {
+      rootPage: {
+        rootPage: {
+          title: { eq: pageDataResponse.data.rootPage.title },
+        },
+      },
+    },
   });
 
   return {
     props: {
       pageData: pageDataResponse,
+      linkedContentPages: linkedPagesResponse,
       siteData: siteDataResponse,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const postsListData = await client.queries.rootPagesConnection();
-  const post_routes = postsListData.data.rootPagesConnection.edges
+  const postsListData = await client.queries.rootPageConnection();
+
+  const post_routes = postsListData.data.rootPageConnection.edges
     .filter((post) => post.node && post.node.publish)
     .map((post) => ({
       params: {
