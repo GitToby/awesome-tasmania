@@ -32,7 +32,7 @@ export function HeroFooterBar(props: HeroFooterBarProps) {
         </Link>
       </span>
       <div className="flex gap-2 p-2 rounded-box bg-primary">
-        {(props.image.tooltip.text || props.image.tooltip.link) && (
+        {(props.image?.tooltip?.text || props.image?.tooltip?.link) && (
           <div className="h-6 w-6">
             <CameraApatureSVG image={props.image} />
           </div>

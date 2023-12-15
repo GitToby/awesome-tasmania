@@ -3,15 +3,13 @@ title: McHenry Distillery
 description: >-
   Australia’s southern-most Distillery and Brewery resting on the side of Mount
   Arthur located on the Tasman Peninsula
-rootPage: content/pages/distillers.md
+rootPage: content/pages/distilleries.md
 image:
   url: /media/images/McHenryDistillery.jpg
   alt: Mchenry Webpage Image
-  tooltip:
-    text: ''
 link:
-  description: Tobydevlin.com
-  url: 'https://mchenrydistillery.com.au/'
+  description: Visit McHenry Distillery
+  url: "https://mchenrydistillery.com.au/"
 iframeUrl: >-
   https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.598430815718!2d147.80214877640879!3d-43.15496117113021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaa6db01d35a88949%3A0xd9c059cca8ff9fac!2sMcHenry%20Distillery!5e0!3m2!1sen!2sau!4v1702628562440!5m2!1sen!2sau
 ---

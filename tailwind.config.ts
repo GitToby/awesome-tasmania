@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -36,9 +38,25 @@ const config: Config = {
           "--animation-btn": "0.5s", // duration of animation when you click on button
         },
       },
-      "halloween",
+      {
+        mythemeDark: {
+          primary: "#e7e5e4",
+          secondary: "#d6d3d1",
+          accent: "#d6d3d1",
+          neutral: "#1c1917",
+          "base-100": "#0c2304",
+          info: "#a3e635",
+          success: "#67e8f9",
+          warning: "#fbbf24",
+          error: "#ef4444",
+          "--rounded-box": "0.125rem", // border radius rounded-box utility class, used in card and other large boxes
+          "--rounded-btn": "0.125rem", // border radius rounded-btn utility class, used in buttons and similar element
+          "--rounded-badge": "0.125rem", // border radius rounded-badge utility class, used in badges and similar
+          "--animation-btn": "0.5s", // duration of animation when you click on button
+        },
+      },
     ],
-    darkTheme: "halloween",
+    darkTheme: "mythemeDark",
   },
 };
 export default config;

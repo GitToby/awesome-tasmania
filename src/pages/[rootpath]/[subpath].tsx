@@ -30,7 +30,7 @@ const SubPathPage = (props: SubPathProps) => {
         <div className="divider w-1/3 mx-auto"></div>
         <TinaMarkdown content={pageData.body} />
         <Linkd
-          className="btn btn-wide btn-outline"
+          className="btn btn-wide btn-outline my-4"
           href={pageData.link.url}
           externalFlag
         >

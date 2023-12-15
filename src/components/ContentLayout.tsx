@@ -36,7 +36,7 @@ export function ContentLayout(props: ContentLayoutProps) {
           {props.bodyInHeader && <TinaMarkdown content={props.pageData.body} />}
         </HeroTitle>
       </Hero>
-      <div id="content" className="flex flex-col items-center bg-base-100 text-base-content">{props.children}</div>
+      <div id="content" className="flex flex-col items-center bg-base-100 text-base-content shadow-xl">{props.children}</div>
       <Footer siteData={props.siteData} />
     </main>
   );
