@@ -1,5 +1,5 @@
 import { Collection } from "tinacms";
-import { image, linkedPages } from "../commonFields";
+import { image, linkedPages, listOfLinks } from "../commonFields";
 
 // This is a set of collections where there will be only one document per, with all the fields.
 // Its possible thanks to singletonAlowedActions and match.include
@@ -39,6 +39,7 @@ export const siteData: Collection = {
       name: "twitter",
       label: "Twitter Username",
     },
+    { ...listOfLinks, name: "footerLinks", label: "Footer Links" },
   ],
   ui: {
     router: () => `/`,
@@ -51,7 +52,7 @@ export const siteData: Collection = {
         values?.title?.toLowerCase().replace(/ /g, "-"),
       readonly: true,
     },
-    global: true
+    global: true,
   },
   match: {
     include: "site-data",

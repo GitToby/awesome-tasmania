@@ -28,9 +28,10 @@ const RootPage = (props: RootPageProps) => {
       siteData={props.siteData}
       pageData={pageData as PageData}
       downarrow={includeLinkedPages}
+      bodyInHeader
     >
       {includeLinkedPages && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 bg-base-100">
           {linkedPages.map((page, idx) => {
             const linkedPage = page.node;
             return (
@@ -78,8 +79,8 @@ export const getStaticProps = async ({
 export const getStaticPaths = async () => {
   const postsListData = await client.queries.rootPageConnection();
 
-  const post_routes = postsListData.data.rootPageConnection.edges
-    .filter((post) => post.node && post.node.publish)
+  const post_routes = postsListData.data.rootPageConnection.edges!
+    .filter((post) => post!.node && post!.node.publish)
     .map((post) => ({
       params: {
         // This `rootpath` matches the [rootpath]/index.tsx file param

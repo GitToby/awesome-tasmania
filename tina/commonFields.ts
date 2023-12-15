@@ -32,7 +32,6 @@ export const body: TinaField = {
   label: "Body",
   isBody: true,
   description: "the body of the content, will be rendered as HTML",
-  required: true,
 };
 
 export const publish: TinaField = {
@@ -97,13 +96,28 @@ const url: TinaField = {
     "The URL the link will point to, can be relative to site base or absolute to external sites.",
   required: true,
 };
+export const externalFlag: TinaField = {
+  type: "boolean",
+  name: "externalFlag",
+  label: "External",
+  description: "a tag for an exernal item",
+};
 
-export const externalLink: TinaField = {
+export const link: TinaField = {
   type: "object",
   name: "link",
-  label: "External Link",
-  description: "Link to an external page.",
-  fields: [description, url],
+  label: "Link",
+  description: "Link to a page.",
+  fields: [description, url, externalFlag],
+};
+
+export const listOfLinks: TinaField = {
+  type: "object",
+  name: "links",
+  label: "Links",
+  list: true,
+  description: "A list of Links",
+  fields: [link],
 };
 
 export const linkedrootPage: TinaField = {

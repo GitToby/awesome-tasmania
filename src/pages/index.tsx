@@ -26,18 +26,28 @@ export default function Page(props: HomePageProps) {
   });
 
   const pageData = homeData.data.homePageConnection.edges![0]?.node;
-  const pageLinks = pageData.linkedPages;
+  const pageLinks = pageData?.linkedPages;
+  if (!pageData) {
+    return;
+  }
+
   return (
-    <ContentLayout siteData={props.siteData} pageData={pageData as PageData}>
+    <ContentLayout
+      siteData={props.siteData}
+      pageData={pageData as PageData}
+      bodyInHeader
+    >
       {pageLinks && (
         <div className="flex flex-wrap place-content-center gap-2">
           {pageLinks &&
-            pageLinks.map((link) => (
-              <PageLink
-                page={link.linkedPage as PageData}
-                className="basis-1/3 btn-primary  btn-outline"
-              />
-            ))}
+            pageLinks
+              .filter((link) => link?.linkedPage)
+              .map((link) => (
+                <PageLink
+                  page={link!.linkedPage as PageData}
+                  className="basis-1/3 btn-primary  btn-outline"
+                />
+              ))}
         </div>
       )}
     </ContentLayout>

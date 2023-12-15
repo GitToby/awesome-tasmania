@@ -19,7 +19,9 @@ export function NavButtons(props: NavButtonsProps) {
 
   return (
     <div className="flex flex-wrap gap-2">
-      <Linkd className="btn btn-primary btn-sm" title="Home" url="/" />
+      <Linkd className="btn btn-primary btn-sm" href="/">
+        Home
+      </Linkd>
       {navData.linkedPages &&
         navData.linkedPages.map((link, idx) => {
           return (

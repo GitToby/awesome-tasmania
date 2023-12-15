@@ -13,11 +13,11 @@ export function HeroTitle(props: HeroTitleProps) {
   const router = useRouter();
   return (
     <>
-      <div className="divider divider-primary"></div>
-      <h1 className="text-5xl font-bold uppercase mb-5 ">{props.title}</h1>
-      <div className="prose-invert mb-5">
+      <div className="divider divider-primary w-full"></div>
+      <h1 className="text-5xl font-bold capitalize mb-5">{props.title}</h1>
+      <div className="prose-invert mb-5 w-full">
         <h2>{props.description}</h2>
-        <div className="divider divider-primary"></div>
+        <div className="divider divider-primary w-full"></div>
         {props.children}
         {props.downarrow && (
           <Link href="#content">

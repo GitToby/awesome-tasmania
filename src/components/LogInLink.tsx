@@ -7,5 +7,9 @@ type LoginBtnProps = ClassNameMixin;
 export function LoginLink(props: LoginBtnProps) {
   const router = useRouter();
   const path = `/admin/index.html#/~${router.asPath}`;
-  return <Linkd title="Login" url={path} className={props.className} />;
+  return (
+    <Linkd href={path} className={props.className}>
+      Login
+    </Linkd>
+  );
 }

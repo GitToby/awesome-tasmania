@@ -22,7 +22,7 @@ export function PageCard({ page, parentPage }: PageCardBtnProps) {
       </figure>
       <div className="card-body place-items-center">
         <div className="divider divider-primary" />
-        <h1 className="card-title text-xl uppercase">{page.title}</h1>
+        <h1 className="card-title text-xl capitalize">{page.title}</h1>
         <div className="divider divider-primary" />
         <p className="mb-3">{page.description}</p>
         <PageLink title="More" parentPage={parentPage} page={page} className="btn btn-primary" />

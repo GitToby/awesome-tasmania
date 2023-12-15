@@ -18,6 +18,15 @@
       "link": "https://visibleearth.nasa.gov/images/72500/tasmania"
     }
   },
-  "facebook": "tobydevlin",
-  "instagram": "hellywelly96"
+  "facebook": "",
+  "instagram": "hellywelly93",
+  "youtube": "",
+  "footerLinks": [
+    {
+      "link": {
+        "description": "Home",
+        "url": "/"
+      }
+    }
+  ]
 }

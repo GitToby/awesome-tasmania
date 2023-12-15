@@ -5,11 +5,12 @@ import { ChildrenMixin, PageData, SiteDataQueryResponse } from "@/types";
 import { Hero } from "./Hero";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { HeroTitle } from "./HeroTitle";
-
+import { Footer } from "./Footer";
 type ContentLayoutProps = {
   siteData: SiteDataQueryResponse;
   pageData: PageData;
   downarrow?: boolean;
+  bodyInHeader?: boolean;
 } & ChildrenMixin;
 
 export function ContentLayout(props: ContentLayoutProps) {
@@ -32,12 +33,11 @@ export function ContentLayout(props: ContentLayoutProps) {
           description={props.pageData.description}
           downarrow={props.downarrow}
         >
-          <TinaMarkdown content={props.pageData.body} />
+          {props.bodyInHeader && <TinaMarkdown content={props.pageData.body} />}
         </HeroTitle>
       </Hero>
-      <div id="content" className="flex flex-col jusify-center">
-        {props.children}
-      </div>
+      <div id="content" className="flex flex-col items-center bg-base-100 text-base-content">{props.children}</div>
+      <Footer siteData={props.siteData} />
     </main>
   );
 }

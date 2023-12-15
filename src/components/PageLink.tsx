@@ -13,10 +13,8 @@ export function PageLink(props: PageLinkBtnProps) {
   const pageFilename = props.page._sys.filename;
   const path = [parentFilename, pageFilename].join("/");
   return (
-    <Linkd
-      title={props.title ? props.title : pageFilename}
-      url={path}
-      className={props.className}
-    />
+    <Linkd href={path} className={props.className}>
+      {props.title ? props.title : pageFilename}
+    </Linkd>
   );
 }

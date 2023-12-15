@@ -1,26 +1,22 @@
 import Link from "next/link";
-import { ClassNameMixin } from "@/types";
+import { ChildrenMixin, ClassNameMixin } from "@/types";
+import { OpenExternalSVG } from "./svgs";
 
 type LinkBtnProps = {
-  title: string;
-  url: string;
-  newTab?: boolean;
-  disabled?: boolean;
-} & ClassNameMixin;
+  href: string;
+  externalFlag?: boolean;
+} & ClassNameMixin &
+  ChildrenMixin;
 
 export function Linkd(props: LinkBtnProps) {
   return (
     <Link
-      href={props.url}
-      target={props.newTab ? "_blank" : "_self"}
-      className={[
-        "uppercase",
-        props.className,
-        props.disabled && "btn-disabled",
-        props.newTab && "after:content-extern",
-      ].join(" ")}
+      href={props.href}
+      target={props.externalFlag ? "_blank" : "_self"}
+      className={["uppercase", props.className].join(" ")}
     >
-      {props.title}
+      {props.children}{" "}
+      {props.externalFlag && <OpenExternalSVG className="h-4 w-4" />}
     </Link>
   );
 }
