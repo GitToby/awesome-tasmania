@@ -1,5 +1,5 @@
 ---
-title: Home
+title: Awesome Tasmania
 description: >-
   Embrace Awesome Tasmania, an island where nature unfolds its grandeur and
   spirited adventure beckons around every bend. From breathtaking landscapes to
