@@ -14,4 +14,3 @@ image:
     link: 'https://visibleearth.nasa.gov/images/72500/tasmania'
 ---
 
-We have collected our favourite Tasmanian things and listed them here.
