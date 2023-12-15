@@ -118,6 +118,11 @@ export const listOfLinks: TinaField = {
   list: true,
   description: "A list of Links",
   fields: [link],
+  ui: {
+    itemProps: (item) => {
+      return { label: `${item?.link?.description} -> ${item?.link?.url}` };
+    },
+  },
 };
 
 export const linkedrootPage: TinaField = {
