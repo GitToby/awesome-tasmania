@@ -1,13 +1,16 @@
 ---
 title: Forty Spotted
-description: A taste of Tassie from the bottom of the world, they do things a bit different down there. Using Tasmanias bursting fresh natural ingredients like their signature native pepperberry.
+description: >-
+  A taste of Tassie from the bottom of the world, they do things a bit different
+  down there. Using Tasmanias bursting fresh natural ingredients like their
+  signature native pepperberry.
 rootPage: content/pages/distilleries.md
 image:
-  url: public/media/images/fortyspottedgin.jpg
+  url: /media/images/fortyspottedgin.jpg
   alt: Forty Spotted Gin Image
 link:
   description: Visit forty spotted
-  url: https://www.fortyspotted.com
+  url: 'https://www.fortyspotted.com'
 iframeUrl: >-
   https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13549.741634707932!2d147.3261484681018!3d-42.88351376842007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaa6e758489afffff%3A0x443259427c4bd43f!2sGin(bar)%20by%20Forty%20Spotted!5e0!3m2!1sen!2sau!4v1702638723388!5m2!1sen!2sau
 ---
