@@ -8,6 +8,7 @@ import {
   RootPagesLinkedPagesPage,
   SiteDataConnectionQuery,
   SiteDataConnectionQueryVariables,
+  SiteDataFallbackImg,
 } from "../tina/__generated__/types";
 
 export type SiteQueryResponse = {
@@ -27,7 +28,7 @@ export type RelativePathQuery<T> = {
   query: string;
 };
 
-export type PageImage = HomePageImage | RootPagesImage | ContentPagesImage;
+export type PageImage = HomePageImage | RootPagesImage | ContentPagesImage | SiteDataFallbackImg;
 export type LinkedPage = HomePageLinkedPagesPage | RootPagesLinkedPagesPage;
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };
