@@ -1,40 +1,42 @@
-import Image from "next/image";
-import { Linkd } from "@/components/Linkd";
-import { NavBar } from "@/components/NavBar";
-import { FooterBar } from "@/components/FooterBar";
+import { HeroFooterBar } from "@/components/HeroFooterBar";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { ChildrenMixin, PageImage, SiteDataQueryResponse } from "@/types";
+import { ChildrenMixin, PageData, SiteDataQueryResponse } from "@/types";
+import { Hero } from "./Hero";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { HeroTitle } from "./HeroTitle";
 
 type ContentLayoutProps = {
   siteData: SiteDataQueryResponse;
-  page: {
-    title: string;
-    description: string;
-  };
-  image?: PageImage;
+  pageData: PageData;
+  downarrow?: boolean;
 } & ChildrenMixin;
 
-export function ContentLayout(props:ContentLayoutProps) {
+export function ContentLayout(props: ContentLayoutProps) {
   const router = useRouter();
   const canonical = `something${router.asPath}`;
 
-  const image = props.image
-    ? props.image
+  const image = props.pageData.image
+    ? props.pageData.image
     : props.siteData.data.siteDataConnection.edges[0].node.fallbackImg;
 
   return (
     <main>
-      <NextSeo title={props.page.title} description={props.page.description} />
-      <div className="relative hero min-h-screen w-screen bg-primary-content">
-        <Image src={image.url} alt={image.alt} fill objectFit="cover"></Image>
-        <div className="hero-overlay bg-opacity-20 flex flex-col justify-between items-center h-full z-10">
-          <NavBar siteData={props.siteData} />
-          <div className="hero-content text-center text-primary flex flex-col w-[70vw]">
-            {props.children}
-          </div>
-          <FooterBar siteData={props.siteData} image={image} />
-        </div>
+      <NextSeo
+        title={props.pageData.title}
+        description={props.pageData.description}
+      />
+      <Hero siteData={props.siteData} pageData={props.pageData}>
+        <HeroTitle
+          title={props.pageData.title}
+          description={props.pageData.description}
+          downarrow={props.downarrow}
+        >
+          <TinaMarkdown content={props.pageData.body} />
+        </HeroTitle>
+      </Hero>
+      <div id="content" className="flex flex-col jusify-center">
+        {props.children}
       </div>
     </main>
   );

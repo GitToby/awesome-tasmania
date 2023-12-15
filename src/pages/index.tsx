@@ -5,9 +5,9 @@ import {
   HomePageConnectionQueryVariables,
 } from "../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { LandingLayout } from "@/components/LandingLayout";
-import { LinkedPage, SiteDataQueryResponse } from "@/types";
+import { PageData, SiteDataQueryResponse } from "@/types";
 import { PageLink } from "@/components/PageLink";
+import { ContentLayout } from "@/components/ContentLayout";
 
 type HomePageProps = {
   homeData: {
@@ -28,30 +28,19 @@ export default function Page(props: HomePageProps) {
   const pageData = homeData.data.homePageConnection.edges![0]?.node;
   const pageLinks = pageData.linkedPages;
   return (
-    <LandingLayout
-      siteData={props.siteData}
-      page={{
-        title: pageData.title,
-        description: "blah",
-      }}
-      image={pageData.image}
-    >
-      <h1 className="text-5xl font-bold uppercase mb-5">{pageData.title}</h1>
-      <div className="prose-invert mb-5">
-        <TinaMarkdown content={pageData.body} />
-      </div>
+    <ContentLayout siteData={props.siteData} pageData={pageData as PageData}>
       {pageLinks && (
         <div className="flex flex-wrap place-content-center gap-2">
           {pageLinks &&
             pageLinks.map((link) => (
               <PageLink
-                page={link.linkedPage as LinkedPage}
+                page={link.linkedPage as PageData}
                 className="basis-1/3 btn-primary  btn-outline"
               />
             ))}
         </div>
       )}
-    </LandingLayout>
+    </ContentLayout>
   );
 }
 

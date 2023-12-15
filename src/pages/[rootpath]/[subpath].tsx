@@ -5,8 +5,7 @@ import {
   RootPageQuery,
 } from "../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { LandingLayout } from "@/components/LandingLayout";
-import { RelativePathQuery, SiteDataQueryResponse } from "@/types";
+import { PageData, RelativePathQuery, SiteDataQueryResponse } from "@/types";
 import { ContentLayout } from "@/components/ContentLayout";
 
 type SubPathProps = {
@@ -25,11 +24,7 @@ const SubPathPage = (props: SubPathProps) => {
   return (
     <ContentLayout
       siteData={props.siteData}
-      page={{
-        title: pageData.title,
-        description: pageData.description,
-      }}
-      image={pageData.image}
+      pageData={pageData as PageData}
     >
       <h1 className="text-5xl font-bold uppercase mb-5 ">{pageData.title}</h1>
       <div className="prose-invert  mb-5">

@@ -14,7 +14,7 @@ export function Linkd(props: LinkBtnProps) {
       href={props.url}
       target={props.newTab ? "_blank" : "_self"}
       className={[
-        "uppercase btn",
+        "uppercase",
         props.className,
         props.disabled && "btn-disabled",
         props.newTab && "after:content-extern",

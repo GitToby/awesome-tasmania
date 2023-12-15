@@ -15,10 +15,10 @@ const contentPages: Collection = {
   fields: [
     title,
     description,
-    { ...linkedrootPage, label: "Parent Page" },
-    body,
-    externalLink,
     image,
+    body,
+    { ...linkedrootPage, label: "Parent Page" },
+    externalLink,
   ],
   ui: {
     // currently cant place data from the document in the path.

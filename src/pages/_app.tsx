@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const url = `${router.asPath}`;
 
   return (
-    <div className={[font.className, "scroll-smooth"].join(" ")}>
+    <div className={[font.className].join(" ")}>
       <DefaultSeo
         title="Home"
         titleTemplate="%s | Next Tina Tailwind"

@@ -1,19 +1,20 @@
 import Link from "next/link";
-import { ClassNameMixin, LinkedPage } from "@/types";
+import { ClassNameMixin, PageData } from "@/types";
 import { Linkd } from "./Linkd";
 
 type PageLinkBtnProps = {
-  parentPage?: LinkedPage;
-  page: LinkedPage;
+  parentPage?: PageData;
+  page: PageData;
+  title?: string;
 } & ClassNameMixin;
 
 export function PageLink(props: PageLinkBtnProps) {
   const parentFilename = props.parentPage?._sys.filename;
   const pageFilename = props.page._sys.filename;
-  const path = [parentFilename, pageFilename].join("/")
+  const path = [parentFilename, pageFilename].join("/");
   return (
     <Linkd
-      title={pageFilename}
+      title={props.title ? props.title : pageFilename}
       url={path}
       className={props.className}
     />

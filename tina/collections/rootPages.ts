@@ -12,7 +12,7 @@ export const rootPages: Collection = {
   name: "rootPage",
   label: "Root Page",
   path: "content/pages",
-  fields: [title, description, body, image, publish],
+  fields: [title, description, image, body, publish],
   ui: {
     router: ({ document }) => `/${document._sys.filename}`,
     filename: {

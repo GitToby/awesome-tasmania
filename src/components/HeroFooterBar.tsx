@@ -9,12 +9,12 @@ import {
 import Link from "next/link";
 import { PageImage, SiteDataQueryResponse } from "@/types";
 
-type FooterBarProps = {
+type HeroFooterBarProps = {
   siteData: SiteDataQueryResponse;
   image?: PageImage;
 };
 
-export function FooterBar(props: FooterBarProps) {
+export function HeroFooterBar(props: HeroFooterBarProps) {
   const tina = useTina({
     data: props.siteData.data,
     query: props.siteData.query,

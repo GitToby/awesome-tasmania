@@ -6,12 +6,12 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme:{
-    extend:{
+  theme: {
+    extend: {
       content: {
-        "extern": "_↗"
-      }
-    }
+        extern: "_↗",
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
@@ -33,7 +33,7 @@ const config: Config = {
           "--rounded-box": "0.125rem", // border radius rounded-box utility class, used in card and other large boxes
           "--rounded-btn": "0.125rem", // border radius rounded-btn utility class, used in buttons and similar element
           "--rounded-badge": "0.125rem", // border radius rounded-badge utility class, used in badges and similar
-           "--animation-btn": "0.5s", // duration of animation when you click on button
+          "--animation-btn": "0.5s", // duration of animation when you click on button
         },
       },
       "halloween",

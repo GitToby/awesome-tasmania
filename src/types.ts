@@ -5,6 +5,7 @@ import {
   ContentPageConnectionQueryVariables,
   ContentPageImage,
   Exact,
+  HomePage,
   HomePageImage,
   HomePageLinkedPagesLinkedPage,
   RootPage,
@@ -46,6 +47,6 @@ export type PageImage =
   | RootPageImage
   | ContentPageImage
   | SiteDataFallbackImg;
-export type LinkedPage = RootPage | ContentPage;
+export type PageData = HomePage | RootPage | ContentPage;
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };

@@ -1,16 +1,14 @@
 import { useTina } from "tinacms/dist/react";
 import client from "../../../tina/__generated__/client";
 import { RootPageQuery } from "../../../tina/__generated__/types";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { LandingLayout } from "@/components/LandingLayout";
 import {
   ContentPageQueryResponse,
-  LinkedPage,
+  PageData,
   RelativePathQuery,
   SiteDataQueryResponse,
 } from "@/types";
-import { PageLink } from "@/components/PageLink";
 import { PageCard } from "@/components/PageCard";
+import { ContentLayout } from "@/components/ContentLayout";
 
 type RootPageProps = {
   pageData: RelativePathQuery<RootPageQuery>;
@@ -24,33 +22,28 @@ const RootPage = (props: RootPageProps) => {
 
   const tinaResContentPages = useTina({ ...props.linkedContentPages });
   const linkedPages = tinaResContentPages.data.contentPageConnection.edges;
-
+  const includeLinkedPages = linkedPages && linkedPages.length > 0;
   return (
-    <LandingLayout
+    <ContentLayout
       siteData={props.siteData}
-      page={{
-        title: pageData.title,
-        description: pageData.description,
-      }}
-      image={pageData.image}
+      pageData={pageData as PageData}
+      downarrow={includeLinkedPages}
     >
-      <h1 className="text-5xl font-bold uppercase mb-5">{pageData.title}</h1>
-      <div className="prose-invert mb-5">
-        <TinaMarkdown content={pageData.body} />
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {linkedPages &&
-          linkedPages.map((page, idx) => {
+      {includeLinkedPages && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+          {linkedPages.map((page, idx) => {
             const linkedPage = page.node;
             return (
               <PageCard
-                page={linkedPage as LinkedPage}
-                parentPage={pageData as LinkedPage}
+                key={idx}
+                page={linkedPage as PageData}
+                parentPage={pageData as PageData}
               />
             );
           })}
-      </div>
-    </LandingLayout>
+        </div>
+      )}
+    </ContentLayout>
   );
 };
 
