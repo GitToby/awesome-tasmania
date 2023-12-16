@@ -1,8 +1,7 @@
 import { defineConfig } from "tinacms";
 import { homePage } from "./collections/homePage";
 import { siteData } from "./collections/siteData";
-import contentPages from "./collections/contentPages";
-import { rootPages } from "./collections/rootPages";
+import { page } from "./collections/pages";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -31,6 +30,6 @@ export default defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [homePage, rootPages, contentPages, siteData],
+    collections: [homePage, page, siteData],
   },
 });

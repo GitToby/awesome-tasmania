@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { ClassNameMixin, PageData } from "@/types";
 import { Linkd } from "./Linkd";
+import { Page } from "../../tina/__generated__/types";
 
 type PageLinkBtnProps = {
-  parentPage?: PageData;
-  page: PageData;
+  page: Page;
   title?: string;
 } & ClassNameMixin;
 
 export function PageLink(props: PageLinkBtnProps) {
-  const parentFilename = props.parentPage?._sys.filename;
+  if (!props.page) {
+    return null;
+  }
   const pageFilename = props.page._sys.filename;
-  const path = [parentFilename, pageFilename].join("/");
   return (
-    <Linkd href={path} className={props.className}>
+    <Linkd href={`/${pageFilename}`} className={props.className}>
       {props.title ? props.title : pageFilename}
     </Linkd>
   );

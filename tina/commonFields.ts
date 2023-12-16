@@ -9,14 +9,6 @@ export const title: TinaField = {
   required: true,
 };
 
-export const subtitle: TinaField = {
-  type: "string",
-  name: "subtitle",
-  label: "Subtitle",
-  description: "A subtitle for the content",
-  required: true,
-};
-
 export const description: TinaField = {
   type: "string",
   name: "description",
@@ -50,7 +42,7 @@ const _image: TinaField = {
   required: true,
 };
 
-const imageAlt: TinaField = {
+const _imageAlt: TinaField = {
   type: "string",
   name: "alt",
   label: "Image Alt",
@@ -59,36 +51,22 @@ const imageAlt: TinaField = {
   required: true,
 };
 
-const imageTooltipText: TinaField = {
+const _imageTooltip: TinaField = {
   type: "string",
-  name: "text",
+  name: "tooltip",
   label: "Image Tooltip Text",
   description: "Helper tooltip in various locations the image is used.",
-};
-
-const imageTooltipLink: TinaField = {
-  type: "string",
-  name: "link",
-  label: "Image Tooltip Link",
-  description:
-    "When the user clicks the icon that displays the tooltip they are taken to this link",
-};
-
-const imageTooltip: TinaField = {
-  type: "object",
-  name: "tooltip",
-  label: "Tooltip",
-  fields: [imageTooltipText, imageTooltipLink],
 };
 
 export const image: TinaField = {
   type: "object",
   name: "image",
   label: "Image",
-  fields: [_image, imageAlt, imageTooltip],
+  fields: [_image, _imageAlt, _imageTooltip],
+  required: true,
 };
 
-const url: TinaField = {
+const _url: TinaField = {
   type: "string",
   name: "url",
   label: "URL",
@@ -96,7 +74,8 @@ const url: TinaField = {
     "The URL the link will point to, can be relative to site base or absolute to external sites.",
   required: true,
 };
-export const externalFlag: TinaField = {
+
+const _externalFlag: TinaField = {
   type: "boolean",
   name: "externalFlag",
   label: "External",
@@ -108,7 +87,7 @@ export const link: TinaField = {
   name: "link",
   label: "Link",
   description: "Link to a page.",
-  fields: [description, url, externalFlag],
+  fields: [description, _url, _externalFlag],
 };
 
 export const listOfLinks: TinaField = {
@@ -135,9 +114,9 @@ export const linkedrootPage: TinaField = {
 
 export const linkedPage: TinaField = {
   type: "reference",
-  name: "linkedPage",
+  name: "page",
   label: "Linked Page",
-  collections: ["rootPage", "contentPage"],
+  collections: ["page"],
 };
 
 export const linkedPages: TinaField = {
@@ -148,7 +127,7 @@ export const linkedPages: TinaField = {
   fields: [linkedPage],
   ui: {
     itemProps: (item) => {
-      return { label: `Linked page: ${item.linkedPage}` };
+      return { label: `Linked page: ${item.page}` };
     },
   },
 };

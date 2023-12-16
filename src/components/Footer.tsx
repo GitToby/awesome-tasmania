@@ -2,23 +2,17 @@ import { useTina } from "tinacms/dist/react";
 import { SiteDataQueryResponse } from "@/types";
 import { Linkd } from "./Linkd";
 import { link } from "fs";
+import Link from "next/link";
+import { SiteData } from "../../tina/__generated__/types";
 
 type FooterProps = {
-  siteData: SiteDataQueryResponse;
+  siteData: SiteData;
 };
 
-export function Footer(props: FooterProps) {
-  const tina = useTina({
-    data: props.siteData.data,
-    query: props.siteData.query,
-    variables: props.siteData.variables,
-  });
-
-  const siteData = tina.data.siteDataConnection.edges![0]?.node;
-
+export function Footer({ siteData }: FooterProps) {
   return (
     <footer className="flex flex-col md:flex-row justify-around text-sm gap-6 p-10 bg-neutral text-neutral-content">
-      <nav id="contact" className="basis-1/2">
+      <nav id="contact" className="basis-1/2 flex flex-col items-start">
         <header className="footer-title">Links</header>
         {siteData.footerLinks
           ?.filter((link) => link.link)
@@ -31,6 +25,12 @@ export function Footer(props: FooterProps) {
               {link.link.description}
             </Linkd>
           ))}
+        <span className="mt-5">
+          Made by{" "}
+          <Link className="link" href="https://tobydevlin.com">
+            Toby Devlin
+          </Link>
+        </span>
       </nav>
       <nav className="basis-1/2">
         <header className="footer-title">Acknowledgement of Country</header>

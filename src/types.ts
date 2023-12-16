@@ -1,15 +1,14 @@
 import { ReactNode } from "react";
 import {
-  ContentPage,
-  ContentPageConnectionQuery,
-  ContentPageConnectionQueryVariables,
-  ContentPageImage,
   Exact,
   HomePage,
+  HomePageConnectionQuery,
+  HomePageConnectionQueryVariables,
   HomePageImage,
-  HomePageLinkedPagesLinkedPage,
-  RootPage,
-  RootPageImage,
+  Page,
+  PageConnectionQuery,
+  PageConnectionQueryVariables,
+  PageImage,
   SiteDataConnectionQuery,
   SiteDataConnectionQueryVariables,
   SiteDataFallbackImg,
@@ -26,14 +25,17 @@ type QueryResponse<Q, QV> = {
   query: string;
 };
 
-export type ContentPageQueryResponse = QueryResponse<
-  ContentPageConnectionQuery,
-  ContentPageConnectionQueryVariables
->;
-
 export type SiteDataQueryResponse = QueryResponse<
   SiteDataConnectionQuery,
   SiteDataConnectionQueryVariables
+>;
+export type HomeDataQueryResponse = QueryResponse<
+  HomePageConnectionQuery,
+  HomePageConnectionQueryVariables
+>;
+export type PageQueryResponse = QueryResponse<
+  PageConnectionQuery,
+  PageConnectionQueryVariables
 >;
 
 export type RelativePathQuery<T> = {
@@ -42,11 +44,8 @@ export type RelativePathQuery<T> = {
   query: string;
 };
 
-export type PageImage =
-  | HomePageImage
-  | RootPageImage
-  | ContentPageImage
-  | SiteDataFallbackImg;
-export type PageData = HomePage | RootPage | ContentPage;
+export type Image = HomePageImage | PageImage | SiteDataFallbackImg;
+export type PageData = HomePage | Page;
+
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };

@@ -1,21 +1,19 @@
 import { useTina } from "tinacms/dist/react";
 import client from "../../tina/__generated__/client";
+import { Page } from "../../tina/__generated__/types";
 import {
-  HomePageConnectionQuery,
-  HomePageConnectionQueryVariables,
-} from "../../tina/__generated__/types";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { PageData, SiteDataQueryResponse } from "@/types";
-import { PageLink } from "@/components/PageLink";
+  HomeDataQueryResponse,
+  PageData,
+  PageQueryResponse,
+  SiteDataQueryResponse,
+} from "@/types";
 import { ContentLayout } from "@/components/ContentLayout";
+import { PageCard } from "@/components/PageCard";
 
 type HomePageProps = {
-  homeData: {
-    data: HomePageConnectionQuery;
-    variables: HomePageConnectionQueryVariables;
-    query: string;
-  };
+  homeData: HomeDataQueryResponse;
   siteData: SiteDataQueryResponse;
+  navPages: PageQueryResponse;
 };
 
 export default function Page(props: HomePageProps) {
@@ -24,30 +22,31 @@ export default function Page(props: HomePageProps) {
     query: props.homeData.query,
     variables: props.homeData.variables,
   });
+  const _navData = useTina({
+    data: props.navPages.data,
+    query: props.navPages.query,
+    variables: props.navPages.variables,
+  });
 
   const pageData = homeData.data.homePageConnection.edges![0]?.node;
-  const pageLinks = pageData?.linkedPages;
-  if (!pageData) {
-    return;
-  }
+  const linkedPages = pageData.linkedPages
+    ? pageData.linkedPages.map((link) => link.page && link.page)
+    : [];
 
   return (
     <ContentLayout
       siteData={props.siteData}
       pageData={pageData as PageData}
+      navPages={props.navPages}
       bodyInHeader
     >
-      {pageLinks && (
-        <div className="flex flex-wrap place-content-center gap-2">
-          {pageLinks &&
-            pageLinks
-              .filter((link) => link?.linkedPage)
-              .map((link) => (
-                <PageLink
-                  page={link!.linkedPage as PageData}
-                  className="basis-1/3 btn-primary  btn-outline"
-                />
-              ))}
+      {linkedPages.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 bg-base-100 w-full">
+          {linkedPages
+            .filter((page) => page)
+            .map((page, idx) => (
+              <PageCard key={idx} page={page as Page} />
+            ))}
         </div>
       )}
     </ContentLayout>
@@ -56,12 +55,17 @@ export default function Page(props: HomePageProps) {
 
 export const getStaticProps = async (): Promise<{ props: HomePageProps }> => {
   const pageDataResponse = await client.queries.homePageConnection();
+
   const siteDataResponse = await client.queries.siteDataConnection();
+  const navLinkPages = await client.queries.pageConnection({
+    filter: { includeInNav: { eq: true } },
+  });
 
   return {
     props: {
       homeData: pageDataResponse,
       siteData: siteDataResponse,
+      navPages: navLinkPages,
     },
   };
 };

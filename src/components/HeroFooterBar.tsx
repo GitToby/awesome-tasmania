@@ -6,55 +6,41 @@ import {
   SocialTwitter,
   SocialYoutube,
 } from "./svgs";
-import Link from "next/link";
-import { PageImage, SiteDataQueryResponse } from "@/types";
+import { Image } from "@/types";
+import { SiteData } from "../../tina/__generated__/types";
 
 type HeroFooterBarProps = {
-  siteData: SiteDataQueryResponse;
-  image?: PageImage;
+  siteData: SiteData;
+  image?: Image;
 };
 
-export function HeroFooterBar(props: HeroFooterBarProps) {
-  const tina = useTina({
-    data: props.siteData.data,
-    query: props.siteData.query,
-    variables: props.siteData.variables,
-  });
-
-  const socialData = tina.data.siteDataConnection.edges![0]?.node;
-
+export function HeroFooterBar({ siteData, image }: HeroFooterBarProps) {
   return (
-    <div className="flex justify-between items-center w-full z-50 p-4 text-primary">
-      <span className="h-fit">
-        Made by{" "}
-        <Link className="link" href="https://tobydevlin.com">
-          Toby Devlin
-        </Link>
-      </span>
+    <div className="flex justify-end items-center w-full z-50 p-4 text-primary">
       <div className="flex gap-2 p-2 rounded-box bg-primary">
-        {(props.image?.tooltip?.text || props.image?.tooltip?.link) && (
+        {image?.tooltip && (
           <div className="h-6 w-6">
-            <CameraApatureSVG image={props.image} />
+            <CameraApatureSVG image={image} />
           </div>
         )}
-        {socialData.facebook && (
+        {siteData.facebook && (
           <div className="h-6 w-6 ">
-            <SocialFacebook profile={socialData.facebook} />
+            <SocialFacebook profile={siteData.facebook} />
           </div>
         )}
-        {socialData.instagram && (
+        {siteData.instagram && (
           <div className="h-6 w-6">
-            <SocialInstagram profile={socialData.instagram} />
+            <SocialInstagram profile={siteData.instagram} />
           </div>
         )}
-        {socialData.youtube && (
+        {siteData.youtube && (
           <div className="h-6 w-6">
-            <SocialYoutube profile={socialData.youtube} />
+            <SocialYoutube profile={siteData.youtube} />
           </div>
         )}
-        {socialData.twitter && (
+        {siteData.twitter && (
           <div className="h-6 w-6">
-            <SocialTwitter profile={socialData.youtube} />
+            <SocialTwitter profile={siteData.youtube} />
           </div>
         )}
       </div>

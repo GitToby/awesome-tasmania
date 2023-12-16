@@ -1,22 +1,13 @@
 {
   "linkedPages": [
     {
-      "linkedPage": "content/pages/spas.md"
-    },
-    {
-      "linkedPage": "content/pages/distilleries.md"
-    },
-    {
-      "linkedPage": "content/pages/hikes.md"
+      "page": "content/new-pages/test-page.mdx"
     }
   ],
   "fallbackImg": {
     "url": "/media/images/tasmania-from-space.jpg",
     "alt": "Tasmania from space",
-    "tooltip": {
-      "text": "Jacques Descloitres, MODIS Rapid Response Team, NASA/GSFC",
-      "link": "https://visibleearth.nasa.gov/images/72500/tasmania"
-    }
+    "tooltip": "Jacques Descloitres, MODIS Rapid Response Team, NASA/GSFC"
   },
   "facebook": "",
   "instagram": "",

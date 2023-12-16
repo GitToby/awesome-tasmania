@@ -11,7 +11,7 @@ export const homePage: Collection = {
   format: "md",
   fields: [title, description, image, body, linkedPages],
   ui: {
-    // router: () => `/`,
+    router: () => `/`,
     allowedActions: {
       create: false,
       delete: false,

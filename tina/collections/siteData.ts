@@ -10,10 +10,6 @@ export const siteData: Collection = {
   format: "json",
   fields: [
     {
-      ...linkedPages,
-      description: "Pages to link to via the left hand side nav links",
-    },
-    {
       ...image,
       name: "fallbackImg",
       label: "Fallback Image",
