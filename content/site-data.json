@@ -7,6 +7,14 @@
   "facebook": "",
   "instagram": "",
   "youtube": "",
+  "navLinks": [
+    {
+      "page": "content/pages/hobart.mdx"
+    },
+    {
+      "page": "content/pages/distilaries.mdx"
+    }
+  ],
   "footerLinks": [
     {
       "link": {

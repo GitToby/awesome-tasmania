@@ -16,7 +16,6 @@ type SubPathProps = {
   pageData: RelativePathQuery<PageQuery>;
   siteData: SiteDataQueryResponse;
   pageBackLinks: PageQueryResponse;
-  navPages: PageQueryResponse;
 };
 
 export default function SubPathPage(props: SubPathProps) {
@@ -25,19 +24,21 @@ export default function SubPathPage(props: SubPathProps) {
     query: props.pageData.query,
     variables: props.pageData.variables,
   });
+
   const pageData = data.page;
+
   const linkedPages = pageData.linkedPages
-    ? pageData.linkedPages.map((link) => link.page && link.page)
+    ? pageData.linkedPages.map((link) => link.page && (link.page as Page))
     : [];
 
   const includeBody =
+    pageData.includeBody &&
     pageData.body &&
     pageData.body.children &&
     pageData.body.children.length > 0;
 
   return (
     <ContentLayout
-      navPages={props.navPages}
       siteData={props.siteData}
       pageData={pageData as PageData}
       downArrow={includeBody || linkedPages.length > 0}
@@ -52,11 +53,9 @@ export default function SubPathPage(props: SubPathProps) {
       )}
       {linkedPages.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 bg-base-100 w-full">
-          {linkedPages
-            .filter((page) => page)
-            .map((page, idx) => (
-              <PageCard key={idx} page={page as Page} />
-            ))}
+          {linkedPages.map((page, idx) => (
+            <PageCard key={idx} page={page} />
+          ))}
         </div>
       )}
     </ContentLayout>
@@ -85,16 +84,12 @@ export async function getStaticProps({
   });
 
   const siteDataResponse = await client.queries.siteDataConnection();
-  const navLinkPages = await client.queries.pageConnection({
-    filter: { includeInNav: { eq: true } },
-  });
 
   return {
     props: {
       pageData: pageDataResponse,
       siteData: siteDataResponse,
       pageBackLinks: pageBacklinks,
-      navPages: navLinkPages,
     },
   };
 }

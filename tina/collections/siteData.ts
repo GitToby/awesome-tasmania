@@ -35,6 +35,7 @@ export const siteData: Collection = {
       name: "twitter",
       label: "Twitter Username",
     },
+    { ...linkedPages, name: "navLinks", label: "Nav Links" },
     { ...listOfLinks, name: "footerLinks", label: "Footer Links" },
   ],
   ui: {

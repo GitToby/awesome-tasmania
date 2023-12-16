@@ -1,6 +1,5 @@
 import { Collection } from "tinacms";
 import {
-  body,
   description,
   image,
   linkedPages,
@@ -23,8 +22,10 @@ export const page: Collection = {
     // These are all optional and add content below the hero
     {
       type: "boolean",
-      name: "includeInNav",
-      label: "Include in Nav",
+      name: "includeBody",
+      label: "Include Body in page",
+      description:
+        "Disabling this will remove the body from the center of the page",
     },
     {
       type: "rich-text",

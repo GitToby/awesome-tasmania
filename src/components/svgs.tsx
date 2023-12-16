@@ -1,6 +1,5 @@
 import { ClassNameMixin, Image } from "@/types";
 import Link from "next/link";
-import { ReactNode } from "react";
 
 type SocialProps = {
   profile: string;
@@ -128,6 +127,7 @@ export function DownArrowSVG(props: ClassNameMixin) {
     </svg>
   );
 }
+
 export function OpenExternalSVG(props: ClassNameMixin) {
   return (
     <svg
@@ -149,7 +149,7 @@ type CameraApatureProps = {
 } & ClassNameMixin;
 
 export function CameraApatureSVG(props: CameraApatureProps) {
-  const text = props.image.tooltip;
+  const text = props.image.tooltip ? props.image.tooltip : props.image.alt;
 
   let SVG = (
     <svg

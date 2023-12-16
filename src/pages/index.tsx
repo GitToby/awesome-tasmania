@@ -13,7 +13,6 @@ import { PageCard } from "@/components/PageCard";
 type HomePageProps = {
   homeData: HomeDataQueryResponse;
   siteData: SiteDataQueryResponse;
-  navPages: PageQueryResponse;
 };
 
 export default function Page(props: HomePageProps) {
@@ -21,11 +20,6 @@ export default function Page(props: HomePageProps) {
     data: props.homeData.data,
     query: props.homeData.query,
     variables: props.homeData.variables,
-  });
-  const _navData = useTina({
-    data: props.navPages.data,
-    query: props.navPages.query,
-    variables: props.navPages.variables,
   });
 
   const pageData = homeData.data.homePageConnection.edges![0]?.node;
@@ -37,7 +31,6 @@ export default function Page(props: HomePageProps) {
     <ContentLayout
       siteData={props.siteData}
       pageData={pageData as PageData}
-      navPages={props.navPages}
       bodyInHeader
     >
       {linkedPages.length > 0 && (
@@ -57,15 +50,11 @@ export const getStaticProps = async (): Promise<{ props: HomePageProps }> => {
   const pageDataResponse = await client.queries.homePageConnection();
 
   const siteDataResponse = await client.queries.siteDataConnection();
-  const navLinkPages = await client.queries.pageConnection({
-    filter: { includeInNav: { eq: true } },
-  });
 
   return {
     props: {
       homeData: pageDataResponse,
       siteData: siteDataResponse,
-      navPages: navLinkPages,
     },
   };
 };

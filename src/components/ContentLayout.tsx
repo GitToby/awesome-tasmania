@@ -17,7 +17,6 @@ import { useTina } from "tinacms/dist/react";
 type ContentLayoutProps = {
   siteData: SiteDataQueryResponse;
   pageData: PageData;
-  navPages: PageQueryResponse;
   downArrow?: boolean;
   bodyInHeader?: boolean;
 } & ChildrenMixin;
@@ -39,11 +38,7 @@ export function ContentLayout(props: ContentLayoutProps) {
         title={props.pageData.title}
         description={props.pageData.description}
       />
-      <Hero
-        navLinks={props.navPages}
-        siteData={siteData as SiteData}
-        pageData={props.pageData}
-      >
+      <Hero siteData={siteData as SiteData} pageData={props.pageData}>
         <HeroTitle
           title={props.pageData.title}
           description={props.pageData.description}

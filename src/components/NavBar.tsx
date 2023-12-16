@@ -1,30 +1,22 @@
-import {Linkd} from "./Linkd";
-import {useTina} from "tinacms/dist/react";
-import {PageQueryResponse} from "@/types";
+import { Linkd } from "./Linkd";
 
-import {PageLink} from "./PageLink";
-import {Page} from "../../tina/__generated__/types";
+import { PageLink } from "./PageLink";
+import { Page } from "../../tina/__generated__/types";
 
 type NavButtonsProps = {
-    pages: PageQueryResponse;
+  pages: Page[];
 };
 
 export function NavButtons(props: NavButtonsProps) {
-    const _siteData = useTina({
-        data: props.pages.data,
-        query: props.pages.query,
-        variables: props.pages.variables,
-    });
-    const navPages = _siteData.data.pageConnection.edges.filter(edge => edge.node).map(edge => edge.node);
-
-    return (
-        <div className="flex flex-wrap gap-2">
-            <Linkd className="btn btn-primary btn-sm" href="/">
-                Home
-            </Linkd>
-            {navPages && navPages.map((link, idx) => (
-                <PageLink key={idx} page={link as Page} className="btn btn-primary btn-sm"/>
-            ))}
-        </div>
-    );
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Linkd className="btn btn-primary btn-sm" href="/">
+        Home
+      </Linkd>
+      {props.pages &&
+        props.pages.map((page, idx) => (
+          <PageLink key={idx} page={page} className="btn btn-primary btn-sm" />
+        ))}
+    </div>
+  );
 }
