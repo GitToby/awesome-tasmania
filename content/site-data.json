@@ -1,9 +1,4 @@
 {
-  "linkedPages": [
-    {
-      "page": "content/new-pages/test-page.mdx"
-    }
-  ],
   "fallbackImg": {
     "url": "/media/images/tasmania-from-space.jpg",
     "alt": "Tasmania from space",
