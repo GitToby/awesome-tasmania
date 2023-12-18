@@ -1,6 +1,6 @@
 ---
 title: Awesome Tasmania
-description: A curated list of Awesome Tazzie stuff.
+description: A curated list of Awesome Tassie stuff.
 image:
   srcURL: /media/images/tasmania-from-space.jpg
   altText: Tasmania from space
