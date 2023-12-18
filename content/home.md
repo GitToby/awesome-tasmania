@@ -1,6 +1,6 @@
 ---
 title: Awesome Tasmania
-description: A curated list of Awesome Tassie stuff.
+description: A digital coffee table book of Awesome Tassie stuff.
 image:
   srcURL: /media/images/tasmania-from-space.jpg
   altText: Tasmania from space
