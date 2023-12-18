@@ -149,7 +149,7 @@ type CameraApatureProps = {
 } & ClassNameMixin;
 
 export function CameraApatureSVG(props: CameraApatureProps) {
-  const text = props.image.tooltip ? props.image.tooltip : props.image.alt;
+  const text = props.image.tooltip ? props.image.tooltip : props.image.altText;
 
   let SVG = (
     <svg
