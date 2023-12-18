@@ -1,7 +1,4 @@
-import { useTina } from "tinacms/dist/react";
-import { SiteDataQueryResponse } from "@/types";
 import { Linkd } from "./Linkd";
-import { link } from "fs";
 import Link from "next/link";
 import { SiteData } from "../../tina/__generated__/types";
 
@@ -15,13 +12,16 @@ export function Footer({ siteData }: FooterProps) {
       <nav id="contact" className="basis-1/2 flex flex-col items-start">
         <header className="footer-title">Links</header>
         {siteData.footerLinks
-          ?.filter((link) => link.link)
+          ?.filter((link) => link && link.link)
           .map((link) => (
             <Linkd
               className="btn btn-link btn-xs px-0"
+              // @ts-ignore
               href={link.link.url}
+              // @ts-ignore
               externalFlag={link.link.externalFlag}
             >
+              {/* @ts-ignore*/}
               {link.link.description}
             </Linkd>
           ))}

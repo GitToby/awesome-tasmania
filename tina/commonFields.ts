@@ -63,7 +63,6 @@ export const image: TinaField = {
   name: "image",
   label: "Image",
   fields: [_image, _imageAlt, _imageTooltip],
-  required: true,
 };
 
 const _url: TinaField = {

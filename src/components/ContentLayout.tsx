@@ -30,7 +30,11 @@ export function ContentLayout(props: ContentLayoutProps) {
     query: props.siteData.query,
     variables: props.siteData.variables,
   });
-  const siteData = _siteData.data.siteDataConnection.edges[0].node;
+  let edges = _siteData.data.siteDataConnection.edges;
+  let siteData: SiteData | undefined = undefined;
+  if (edges) {
+    siteData = edges[0]?.node as SiteData;
+  }
 
   return (
     <main>

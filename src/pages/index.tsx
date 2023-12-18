@@ -4,7 +4,6 @@ import { Page } from "../../tina/__generated__/types";
 import {
   HomeDataQueryResponse,
   PageData,
-  PageQueryResponse,
   SiteDataQueryResponse,
 } from "@/types";
 import { ContentLayout } from "@/components/ContentLayout";
@@ -23,8 +22,10 @@ export default function Page(props: HomePageProps) {
   });
 
   const pageData = homeData.data.homePageConnection.edges![0]?.node;
+  // @ts-ignore
   const linkedPages = pageData.linkedPages
-    ? pageData.linkedPages.map((link) => link.page && link.page)
+    ? // @ts-ignore
+      pageData.linkedPages.map((link) => link.page && link.page)
     : [];
 
   return (

@@ -28,7 +28,8 @@ export default function SubPathPage(props: SubPathProps) {
   const pageData = data.page;
 
   const linkedPages = pageData.linkedPages
-    ? pageData.linkedPages.map((link) => link.page && (link.page as Page))
+    ? // @ts-ignore
+      pageData.linkedPages.map((link) => link.page && (link.page as Page))
     : [];
 
   const includeBody =
@@ -53,9 +54,12 @@ export default function SubPathPage(props: SubPathProps) {
       )}
       {linkedPages.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 bg-base-100 w-full">
-          {linkedPages.map((page, idx) => (
-            <PageCard key={idx} page={page} />
-          ))}
+          {linkedPages
+            .filter((page) => page)
+            .map((page, idx) => (
+              // @ts-ignore
+              <PageCard key={idx} page={page} />
+            ))}
         </div>
       )}
     </ContentLayout>

@@ -39,7 +39,7 @@ export function HeroFooterBar({ siteData, image }: HeroFooterBarProps) {
         )}
         {siteData.twitter && (
           <div className="h-6 w-6">
-            <SocialTwitter profile={siteData.youtube} />
+            <SocialTwitter profile={siteData.twitter} />
           </div>
         )}
       </div>
