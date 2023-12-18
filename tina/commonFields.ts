@@ -37,14 +37,14 @@ export const publish: TinaField = {
 
 const _image: TinaField = {
   type: "image",
-  name: "src",
+  name: "srcURL",
   label: "Image",
   required: true,
 };
 
 const _imageAlt: TinaField = {
   type: "string",
-  name: "alt",
+  name: "altText",
   label: "Image Alt",
   description:
     "used in accessable screen readers and when image is not rendered.",
@@ -63,6 +63,7 @@ export const image: TinaField = {
   name: "image",
   label: "Image",
   fields: [_image, _imageAlt, _imageTooltip],
+  required: true,
 };
 
 const _url: TinaField = {

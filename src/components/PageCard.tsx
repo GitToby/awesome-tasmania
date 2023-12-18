@@ -13,8 +13,8 @@ export function PageCard({ page }: PageCardBtnProps) {
       <figure>
         <Image
           className="rounded-box"
-          src={page.image.src}
-          alt={page.image.alt}
+          src={page.image.srcURL}
+          alt={page.image.altText}
           fill
           objectFit="cover"
         ></Image>
