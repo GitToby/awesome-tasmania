@@ -25,7 +25,7 @@ export function Hero(props: Hero) {
 
   return (
     <div className="relative hero min-h-screen bg-primary-content shadow-xl">
-      <Image src={image.url} alt={image.alt} fill objectFit="cover"></Image>
+      <Image src={image.src} alt={image.alt} fill objectFit="cover"></Image>
       <div className="hero-overlay bg-opacity-20 z-10 p-4 ">
         <div className="flex flex-col justify-between items-center gap-4 h-full">
           <div className="flex justify-between w-full gap-2">

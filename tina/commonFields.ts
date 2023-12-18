@@ -37,7 +37,7 @@ export const publish: TinaField = {
 
 const _image: TinaField = {
   type: "image",
-  name: "url",
+  name: "src",
   label: "Image",
   required: true,
 };
