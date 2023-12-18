@@ -1,4 +1,3 @@
-import { useTina } from "tinacms/dist/react";
 import {
   CameraApatureSVG,
   SocialFacebook,
@@ -18,12 +17,11 @@ export function HeroFooterBar({ siteData, image }: HeroFooterBarProps) {
   return (
     <div className="flex justify-end items-center w-full z-50 p-4 text-primary">
       <div className="flex gap-2 p-2 rounded-box bg-primary">
-        {image?.tooltip ||
-          (image?.alt && (
-            <div className="h-6 w-6">
-              <CameraApatureSVG image={image} />
-            </div>
-          ))}
+        {(image?.tooltip || image?.alt) && (
+          <div className="h-6 w-6">
+            <CameraApatureSVG image={image} />
+          </div>
+        )}
         {siteData.facebook && (
           <div className="h-6 w-6 ">
             <SocialFacebook profile={siteData.facebook} />
