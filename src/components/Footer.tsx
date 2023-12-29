@@ -35,7 +35,8 @@ export function Footer({ siteData }: FooterProps) {
           method="POST"
           action="/?submitted=1"
           className="flex flex-col gap-3 w-full"
-          data-netlify="true"
+          // @ts-ignore
+          netlify
         >
           <input
             type="text"
