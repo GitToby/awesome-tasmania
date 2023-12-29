@@ -2,7 +2,6 @@ import { Linkd } from "./Linkd";
 import Link from "next/link";
 import { SiteData } from "../../tina/__generated__/types";
 import { useRouter } from "next/router";
-import { json } from "stream/consumers";
 
 type FooterProps = {
   siteData: SiteData;
