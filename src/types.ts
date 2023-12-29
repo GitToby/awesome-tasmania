@@ -5,6 +5,11 @@ import {
   HomePageConnectionQuery,
   HomePageConnectionQueryVariables,
   HomePageImage,
+  NotFound,
+  NotFoundConnection,
+  NotFoundConnectionQuery,
+  NotFoundConnectionQueryVariables,
+  NotFoundImage,
   Page,
   PageConnectionQuery,
   PageConnectionQueryVariables,
@@ -37,15 +42,22 @@ export type PageQueryResponse = QueryResponse<
   PageConnectionQuery,
   PageConnectionQueryVariables
 >;
-
+export type NotFoundDataQueryResponse = QueryResponse<
+  NotFoundConnectionQuery,
+  NotFoundConnectionQueryVariables
+>;
 export type RelativePathQuery<T> = {
   data: T;
   variables: Exact<{ relativePath: string }>;
   query: string;
 };
 
-export type Image = HomePageImage | PageImage | SiteDataFallbackImg;
-export type PageData = HomePage | Page;
+export type Image =
+  | HomePageImage
+  | PageImage
+  | SiteDataFallbackImg
+  | NotFoundImage;
+export type PageData = HomePage | NotFound | Page;
 
 export type ClassNameMixin = { className?: string };
 export type ChildrenMixin = { children: ReactNode };
