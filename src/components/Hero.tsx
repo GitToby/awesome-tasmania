@@ -34,7 +34,7 @@ export function Hero(props: Hero) {
           <div className="flex justify-between w-full gap-2">
             {/* @ts-ignore */}
             <NavButtons pages={navPages ? navPages : []} />
-            <LoginLink className="md:order-1 btn btn-outline btn-sm btn-primary" />
+            {/* <LoginLink className="md:order-1 btn btn-outline btn-sm btn-primary" /> */}
           </div>
           <div className="hero-content text-center text-primary flex flex-col max-w-[80vw]">
             {props.children}
