@@ -1,15 +1,36 @@
 import { Linkd } from "./Linkd";
 import Link from "next/link";
 import { SiteData } from "../../tina/__generated__/types";
-import { useRouter } from "next/router";
+import { FormEvent, useState } from "react";
 
 type FooterProps = {
   siteData: SiteData;
 };
 
 export function Footer({ siteData }: FooterProps) {
-  const router = useRouter();
-  const submitted = router.query.submitted ? router.query.submitted : null;
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    try {
+      const res = await fetch(
+        "https://getform.io/f/1bdc8adf-acfd-41ca-935f-fab13fad0d86",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log(res);
+      setSubmitMessage("Thanks for your message! You will have an email.");
+    } catch {
+      setSubmitMessage("Something went wrong, please try again");
+    }
+  }
   return (
     <footer className="flex flex-col md:flex-row justify-around text-sm gap-6 p-10 bg-neutral text-neutral-content">
       <nav className="basis-1/3 grow">
@@ -33,10 +54,8 @@ export function Footer({ siteData }: FooterProps) {
         <form
           name="contact"
           method="POST"
-          action="/?submitted=1"
+          onSubmit={onSubmit}
           className="flex flex-col gap-3 w-full"
-          // @ts-ignore
-          netlify
         >
           <input
             type="text"
@@ -56,7 +75,7 @@ export function Footer({ siteData }: FooterProps) {
             className="textarea textarea-bordered w-full textarea-xs bg-neutral border-neutral-content"
             placeholder="Message"
           />
-          {submitted && <p>Thanks for your message! You will have an email.</p>}
+          {submitMessage && <p>{submitMessage}</p>}
           <button type="submit" className="btn btn-xs btn-neutral-content">
             Send
           </button>
