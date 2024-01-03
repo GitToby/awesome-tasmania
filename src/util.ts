@@ -3,7 +3,7 @@ import { getPlaiceholder, GetPlaiceholderReturn } from "plaiceholder";
 
 export async function getImagePlaiceholder(
   imagePath: string,
-): Promise<GetPlaiceholderReturn | undefined> {
+): Promise<GetPlaiceholderReturn | null> {
   try {
     if (imagePath.startsWith("http")) {
       // web based
@@ -23,6 +23,6 @@ export async function getImagePlaiceholder(
     }
   } catch (e) {
     console.log(`WARNING! returning undefined for image at ${imagePath}`);
-    return undefined;
+    return null;
   }
 }
