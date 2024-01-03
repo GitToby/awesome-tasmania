@@ -23,7 +23,7 @@ export function Footer({ siteData }: FooterProps) {
           headers: {
             Accept: "application/json",
           },
-        }
+        },
       );
       console.log(res);
       setSubmitMessage("Thanks for your message! You will have an email.");
@@ -31,9 +31,10 @@ export function Footer({ siteData }: FooterProps) {
       setSubmitMessage("Something went wrong, please try again");
     }
   }
+
   return (
-    <footer className="flex flex-col md:flex-row justify-around text-sm gap-6 p-10 bg-neutral text-neutral-content">
-      <nav className="basis-1/3 grow">
+    <footer className="flex flex-col md:flex-row justify-around text-sm gap-2 p-10 bg-neutral text-neutral-content">
+      <nav className="basis-1/3">
         <header className="footer-title">Acknowledgement of Country</header>
         <div className="prose-invert">
           <p>
@@ -54,7 +55,7 @@ export function Footer({ siteData }: FooterProps) {
         <form
           name="contact"
           onSubmit={onSubmit}
-          className="flex flex-col gap-3 w-full"
+          className="flex flex-col gap-3 w-3/4"
         >
           <input
             type="text"
