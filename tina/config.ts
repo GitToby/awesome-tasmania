@@ -2,7 +2,7 @@ import { defineConfig } from "tinacms";
 import { homePage } from "./collections/homePage";
 import { siteData } from "./collections/siteData";
 import { page } from "./collections/pages";
-import { notFoundPage } from "./collections/404";
+import { notFoundPage } from "./collections/404"; // Your hosting provider likely exposes this as an environment variable
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -32,5 +32,13 @@ export default defineConfig({
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
     collections: [homePage, notFoundPage, page, siteData],
+  },
+  search: {
+    tina: {
+      indexerToken: "50e2c38d416456729190e6f05460ee1a840263e2",
+      stopwordLanguages: ["eng"],
+    },
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 100,
   },
 });
