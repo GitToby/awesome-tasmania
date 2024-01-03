@@ -29,7 +29,7 @@ export function Hero(props: Hero) {
         fill
         objectFit="cover"
       ></Image>
-      <div className="hero-overlay bg-opacity-20 z-10 p-4 ">
+      <div className="hero-overlay bg-opacity-35 z-10 p-4 ">
         <div className="flex flex-col justify-between items-center gap-4 h-full">
           <div className="flex justify-between w-full gap-2">
             {/* @ts-ignore */}

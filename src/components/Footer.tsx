@@ -53,7 +53,6 @@ export function Footer({ siteData }: FooterProps) {
         <header className="footer-title">Contact</header>
         <form
           name="contact"
-          method="POST"
           onSubmit={onSubmit}
           className="flex flex-col gap-3 w-full"
         >
