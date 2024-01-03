@@ -1,24 +1,20 @@
-import { HeroFooterBar } from "@/components/HeroFooterBar";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import {
-  ChildrenMixin,
-  PageData,
-  PageQueryResponse,
-  SiteDataQueryResponse,
-} from "@/types";
+import { ChildrenMixin, PageData, SiteDataQueryResponse } from "@/types";
 import { Hero } from "./Hero";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { HeroTitle } from "./HeroTitle";
 import { Footer } from "./Footer";
-import { Page, SiteData } from "../../tina/__generated__/types";
+import { SiteData } from "../../tina/__generated__/types";
 import { useTina } from "tinacms/dist/react";
+import { GetPlaiceholderReturn } from "plaiceholder";
 
 type ContentLayoutProps = {
   siteData: SiteDataQueryResponse;
   pageData: PageData;
   downArrow?: boolean;
   bodyInHeader?: boolean;
+  plaiceholderBase64?: string | undefined;
 } & ChildrenMixin;
 
 export function ContentLayout(props: ContentLayoutProps) {
@@ -42,7 +38,11 @@ export function ContentLayout(props: ContentLayoutProps) {
         title={props.pageData.title}
         description={props.pageData.description}
       />
-      <Hero siteData={siteData as SiteData} pageData={props.pageData}>
+      <Hero
+        siteData={siteData as SiteData}
+        pageData={props.pageData}
+        plaiceholderBase64={props.plaiceholderBase64}
+      >
         <HeroTitle
           title={props.pageData.title}
           description={props.pageData.description}

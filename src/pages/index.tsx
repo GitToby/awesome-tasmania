@@ -8,9 +8,11 @@ import {
 } from "@/types";
 import { ContentLayout } from "@/components/ContentLayout";
 import { PageCard } from "@/components/PageCard";
+import { getImagePlaiceholder } from "@/util";
 
 type HomePageProps = {
   homeData: HomeDataQueryResponse;
+  plaiceholderReturn: string | undefined;
   siteData: SiteDataQueryResponse;
 };
 
@@ -32,6 +34,7 @@ export default function Page(props: HomePageProps) {
     <ContentLayout
       siteData={props.siteData}
       pageData={pageData as PageData}
+      plaiceholderBase64={props.plaiceholderReturn}
       bodyInHeader
     >
       {linkedPages.length > 0 && (
@@ -52,9 +55,15 @@ export const getStaticProps = async (): Promise<{ props: HomePageProps }> => {
 
   const siteDataResponse = await client.queries.siteDataConnection();
 
+  const res = await getImagePlaiceholder(
+    // @ts-ignore
+    pageDataResponse.data.homePageConnection.edges[0].node.image.srcURL,
+  );
+
   return {
     props: {
       homeData: pageDataResponse,
+      plaiceholderReturn: res.base64,
       siteData: siteDataResponse,
     },
   };

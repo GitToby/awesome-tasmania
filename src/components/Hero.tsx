@@ -2,13 +2,13 @@ import Image from "next/image";
 import { NavButtons } from "@/components/NavBar";
 import { useRouter } from "next/router";
 import { ChildrenMixin, PageData } from "@/types";
-import { LoginLink } from "./LogInLink";
 import { HeroFooterBar } from "./HeroFooterBar";
 import { SiteData } from "../../tina/__generated__/types";
 
 type Hero = {
   siteData: SiteData;
   pageData: PageData;
+  plaiceholderBase64?: string | undefined;
 } & ChildrenMixin;
 
 export function Hero(props: Hero) {
@@ -26,10 +26,13 @@ export function Hero(props: Hero) {
       <Image
         src={image.srcURL}
         alt={image.altText}
+        blurDataURL={props.plaiceholderBase64}
         fill
         objectFit="cover"
+        placeholder={props.plaiceholderBase64 ? "blur" : "empty"}
+        // style={props.plaiceholderReturn?.css}
       ></Image>
-      <div className="hero-overlay bg-opacity-35 z-10 p-4 ">
+      <div className="hero-overlay bg-opacity-35 z-10 p-4">
         <div className="flex flex-col justify-between items-center gap-4 h-full">
           <div className="flex justify-between w-full gap-2">
             {/* @ts-ignore */}

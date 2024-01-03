@@ -11,9 +11,12 @@ import {
 import { ContentLayout } from "@/components/ContentLayout";
 import { tinaComponents } from "@/components/TinaComponents";
 import { PageCard } from "@/components/PageCard";
+import { getImagePlaiceholder } from "@/util";
+import { GetPlaiceholderReturn } from "plaiceholder";
 
 type SubPathProps = {
   pageData: RelativePathQuery<PageQuery>;
+  plaiceholderReturn: string | undefined;
   siteData: SiteDataQueryResponse;
   pageBackLinks: PageQueryResponse;
 };
@@ -42,6 +45,7 @@ export default function SubPathPage(props: SubPathProps) {
     <ContentLayout
       siteData={props.siteData}
       pageData={pageData as PageData}
+      plaiceholderBase64={props.plaiceholderReturn}
       downArrow={includeBody || linkedPages.length > 0}
     >
       {includeBody && (
@@ -89,9 +93,15 @@ export async function getStaticProps({
 
   const siteDataResponse = await client.queries.siteDataConnection();
 
+  const res = await getImagePlaiceholder(
+    // @ts-ignore
+    pageDataResponse.data.page.image.srcURL,
+  );
+
   return {
     props: {
       pageData: pageDataResponse,
+      plaiceholderReturn: res.base64,
       siteData: siteDataResponse,
       pageBackLinks: pageBacklinks,
     },
