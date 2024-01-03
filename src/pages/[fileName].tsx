@@ -101,7 +101,7 @@ export async function getStaticProps({
   return {
     props: {
       pageData: pageDataResponse,
-      plaiceholderReturn: res.base64,
+      plaiceholderReturn: res?.base64,
       siteData: siteDataResponse,
       pageBackLinks: pageBacklinks,
     },

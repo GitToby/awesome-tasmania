@@ -63,7 +63,7 @@ export const getStaticProps = async (): Promise<{ props: HomePageProps }> => {
   return {
     props: {
       homeData: pageDataResponse,
-      plaiceholderReturn: res.base64,
+      plaiceholderReturn: res?.base64,
       siteData: siteDataResponse,
     },
   };
