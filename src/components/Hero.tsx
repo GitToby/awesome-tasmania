@@ -32,7 +32,6 @@ export function Hero(props: Hero) {
         fill
         objectFit="cover"
         placeholder={props.plaiceholderBase64 ? "blur" : "empty"}
-        // style={props.plaiceholderReturn?.css}
       ></Image>
       <div className="hero-overlay bg-opacity-35 z-10 p-4">
         <div className="flex flex-col justify-between items-center gap-4 h-full">

@@ -7,7 +7,6 @@ import { HeroTitle } from "./HeroTitle";
 import { Footer } from "./Footer";
 import { SiteData } from "../../tina/__generated__/types";
 import { useTina } from "tinacms/dist/react";
-import { GetPlaiceholderReturn } from "plaiceholder";
 
 type ContentLayoutProps = {
   siteData: SiteDataQueryResponse;
@@ -37,6 +36,15 @@ export function ContentLayout(props: ContentLayoutProps) {
       <NextSeo
         title={props.pageData.title}
         description={props.pageData.description}
+        openGraph={{
+          images: [
+            {
+              url: props.pageData.image.srcURL,
+              alt: props.pageData.image.altText,
+              type: "image/jpeg",
+            },
+          ],
+        }}
       />
       <Hero
         siteData={siteData as SiteData}
