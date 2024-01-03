@@ -14,7 +14,7 @@ type ContentLayoutProps = {
   pageData: PageData;
   downArrow?: boolean;
   bodyInHeader?: boolean;
-  plaiceholderBase64?: string | undefined;
+  plaiceholderBase64?: string | null;
 } & ChildrenMixin;
 
 export function ContentLayout(props: ContentLayoutProps) {

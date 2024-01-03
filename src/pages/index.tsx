@@ -12,7 +12,7 @@ import { getImagePlaiceholder } from "@/util";
 
 type HomePageProps = {
   homeData: HomeDataQueryResponse;
-  plaiceholderReturn: string | undefined;
+  plaiceholderReturn: string | null;
   siteData: SiteDataQueryResponse;
 };
 
@@ -63,7 +63,7 @@ export const getStaticProps = async (): Promise<{ props: HomePageProps }> => {
   return {
     props: {
       homeData: pageDataResponse,
-      plaiceholderReturn: res?.base64,
+      plaiceholderReturn: res ? res.base64 : null,
       siteData: siteDataResponse,
     },
   };

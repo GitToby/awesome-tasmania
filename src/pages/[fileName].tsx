@@ -16,7 +16,7 @@ import { GetPlaiceholderReturn } from "plaiceholder";
 
 type SubPathProps = {
   pageData: RelativePathQuery<PageQuery>;
-  plaiceholderReturn: string | undefined;
+  plaiceholderReturn: string | null;
   siteData: SiteDataQueryResponse;
   pageBackLinks: PageQueryResponse;
 };
@@ -101,7 +101,7 @@ export async function getStaticProps({
   return {
     props: {
       pageData: pageDataResponse,
-      plaiceholderReturn: res?.base64,
+      plaiceholderReturn: res ? res.base64 : null,
       siteData: siteDataResponse,
       pageBackLinks: pageBacklinks,
     },

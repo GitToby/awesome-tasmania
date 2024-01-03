@@ -8,7 +8,7 @@ import { SiteData } from "../../tina/__generated__/types";
 type Hero = {
   siteData: SiteData;
   pageData: PageData;
-  plaiceholderBase64?: string | undefined;
+  plaiceholderBase64?: string | null;
 } & ChildrenMixin;
 
 export function Hero(props: Hero) {
@@ -26,7 +26,9 @@ export function Hero(props: Hero) {
       <Image
         src={image.srcURL}
         alt={image.altText}
-        blurDataURL={props.plaiceholderBase64}
+        blurDataURL={
+          props.plaiceholderBase64 ? props.plaiceholderBase64 : undefined
+        }
         fill
         objectFit="cover"
         placeholder={props.plaiceholderBase64 ? "blur" : "empty"}
